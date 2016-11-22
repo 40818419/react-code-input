@@ -23,12 +23,12 @@
   },
   "homepage": "https://github.com/40818419/react-code-input#readme",
   "dependencies": {
-    "json-loader": "^0.5.4",
-    "react": "^15.3.1",
-    "react-dom": "^15.3.2",
-    "react-markdown": "^2.4.2"
+    "react": "^15.3.1"
   },
   "devDependencies": {
+    "json-loader": "^0.5.4",
+    "react-dom": "^15.3.2",
+    "react-markdown": "^2.4.2",
     "node-sass": "^3.11.3",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
