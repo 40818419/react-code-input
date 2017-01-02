@@ -14,7 +14,10 @@
   "keywords": [
     "react",
     "react-component",
-    "react-code-input"
+    "react-code-input",
+    "code",
+    "input",
+    "chiffre"
   ],
   "author": "Konstantin Kulinicenko",
   "license": "MIT",
