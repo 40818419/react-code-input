@@ -48,6 +48,45 @@ const props = {
 <ReactCodeInput type='number' digits={6} {...props}/>
 ...
 ```
+## Props:
+##### type
+
+Only types like: `text`, `number`, `password` are accepted.
+
+##### options
+Set the styles as options
+```js
+...
+options: PropTypes.shape({
+  fontFamily: PropTypes.string,
+  borderRadius: PropTypes.string,
+  border: PropTypes.string,
+  boxShadow: PropTypes.string,
+  margin: PropTypes.string,
+  paddingLeft: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  fontSize: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  color: PropTypes.string,
+}),
+...
+```
+##### digits
+Amount of characters to enter.
+##### value
+Setting the initial value of code input field
+##### name
+Set the name of input field.
+##### onChange
+Function, which is called whenever there is a change of value in the input box.
+##### touch
+Marks the given fields as "touched" to show errors.
+##### untouch
+Clears the "touched" flag for the given fields.
+
+## Compatible with
+[`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)
 
 ## License
 MIT
