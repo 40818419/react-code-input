@@ -74,14 +74,19 @@ options: PropTypes.shape({
 ```
 ##### digits
 Amount of characters to enter.
+
 ##### value
-Setting the initial value of code input field
+Setting the initial value of code input field.
+
 ##### name
 Set the name of input field.
+
 ##### onChange
 Function, which is called whenever there is a change of value in the input box.
+
 ##### touch
 Marks the given fields as "touched" to show errors.
+
 ##### untouch
 Clears the "touched" flag for the given fields.
 
