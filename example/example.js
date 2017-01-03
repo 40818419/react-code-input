@@ -19,7 +19,7 @@ const App = React.createClass({
         }
 
         return (<div>
-          <h4>Nummeric input</h4>
+          <h4>Numeric input</h4>
           <ReactCodeInput type="number" digits={6} />
           <ReactMarkdown source="**Example:**
           ```
@@ -38,7 +38,7 @@ const App = React.createClass({
           ```
             <ReactCodeInput type='password' digits={6} />
           ```" />
-        <h4>Nummeric input with options</h4>
+        <h4>Numeric input with options</h4>
         <div style={{ backgroundColor: 'black', display: 'inline-block' }}>
           <ReactCodeInput type="number" digits={6} {...props} />
         </div>

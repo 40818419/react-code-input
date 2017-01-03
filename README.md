@@ -11,8 +11,8 @@ React component for entering and validating code.
 
 ## Usage
 
-### Nummeric input:
-![Nummeric input](https://cloud.githubusercontent.com/assets/2235499/21593670/eafea336-d119-11e6-9d4b-738141f24b44.png)
+### Numeric input:
+![Numeric input](https://cloud.githubusercontent.com/assets/2235499/21593670/eafea336-d119-11e6-9d4b-738141f24b44.png)
 ```js
 ...
 <ReactCodeInput type='number' digits={6} />
@@ -33,8 +33,8 @@ React component for entering and validating code.
 <ReactCodeInput type='password' digits={6} />
 ...
 ```
-### Nummeric input with options:
-![Nummeric input with options](https://cloud.githubusercontent.com/assets/2235499/21593674/f3bb887c-d119-11e6-8b3f-ba478a0f4692.png)
+### Numeric input with options:
+![Numeric input with options](https://cloud.githubusercontent.com/assets/2235499/21593674/f3bb887c-d119-11e6-8b3f-ba478a0f4692.png)
 ```js
 const props = {
   options: {
