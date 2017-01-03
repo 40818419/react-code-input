@@ -1,6 +1,8 @@
 # react-code-input
 React component for entering and validating code.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/970fd2a1775740aa82eecad7cb407395)](https://www.codacy.com/app/konstantin_2/react-code-input?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=40818419/react-code-input&amp;utm_campaign=Badge_Grade)
+
 ## Installation
 
 `npm i --save react-code-input`
