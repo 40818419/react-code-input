@@ -1,4 +1,21 @@
-const path = require("path");
+const path = require("path")
+const loaders = [
+  {
+    test: /\.js$/,
+    loader: "babel-loader",
+    query: {
+      presets: ["es2015", "react"]
+    }
+  },
+  {
+    test: /\.json$/,
+    loader: "json-loader"
+  },
+  {
+    test: /\.css$/,
+    loaders: ["css", "sass"]
+  }
+];
 
 module.exports = [{
   entry: "./src/index.js",
@@ -10,26 +27,7 @@ module.exports = [{
     library: "ReactCodeInput"
   },
   module: {
-    loaders: [
-      {
-        include: [
-          path.resolve(__dirname, "src")
-        ],
-        test: /\.js$/,
-        loader: "babel-loader",
-        query: {
-          presets: ["es2015", "react"]
-        }
-      },
-      {
-        test: /\.json$/,
-        loader: "json-loader"
-      },
-      {
-        test: /\.css$/,
-        loaders: ["css", "sass"]
-      }
-    ]
+    loaders
   },
   externals: {
     react: "react"
@@ -42,23 +40,7 @@ module.exports = [{
     filename: "example.js"
   },
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: "babel-loader",
-        query: {
-          presets: ["es2015", "react"]
-        }
-      },
-      {
-        test: /\.json$/,
-        loader: "json-loader"
-      },
-      {
-        test: /\.css$/,
-        loaders: ["css", "sass"]
-      }
-    ]
+    loaders
   },
   stats: {
     colors: true
