@@ -4,4 +4,4 @@ node_js:
 before_install:
 - gem install sass
 script:
-  - npm run build
+  - npm test
