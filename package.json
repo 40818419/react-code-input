@@ -6,7 +6,15 @@
   "scripts": {
     "start": "webpack && webpack-dev-server --hot --content-base example/",
     "build": "webpack && cd styles && sass style.scss style.css",
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --compilers js:babel-register && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage && rm -rf ./coverage"
+    "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/_mocha test/*.js && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage && rm -rf ./coverage",
+    "test_": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec --compilers js:babel-register && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage && rm -rf ./coverage"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
   },
   "repository": {
     "type": "git",
@@ -32,6 +40,7 @@
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
+    "babel-plugin-istanbul": "^3.1.2",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
@@ -42,16 +51,18 @@
     "css-loader": "^0.25.0",
     "enzyme": "^2.7.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "istanbul": "^1.0.0-alpha",
+    "jsdom-global": "2.1.1",
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.2.0",
     "node-sass": "^3.11.3",
+    "nyc": "^10.0.0",
     "postcss-loader": "^1.1.1",
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-markdown": "^2.4.2",
     "sass-loader": "^4.0.2",
+    "sinon": "^1.17.7",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"

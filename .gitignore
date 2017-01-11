@@ -3,3 +3,6 @@ npm-debug.log
 styles/.sass-cache
 styles/*.css
 styles/*.map
+coverage
+.nyc_output
+.tmp
