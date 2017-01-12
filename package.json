@@ -1,6 +1,6 @@
 {
   "name": "react-code-input",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "React component for entering and validating code.",
   "main": "lib/index.js",
   "scripts": {
