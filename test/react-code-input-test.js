@@ -5,7 +5,7 @@ import { render, shallow, mount } from 'enzyme'
 import chaiEnzyme from 'chai-enzyme'
 import sinon from 'sinon'
 
-import CodeInputField from '../src/index.js'
+import CodeInputField from '../src/ReactCodeInput.js'
 
 chai.use(chaiEnzyme())
 
