@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
 
 export class ReactCodeInput extends Component {
   constructor(props) {
@@ -97,7 +98,7 @@ export class ReactCodeInput extends Component {
   }
 
   render() {
-    const { options = {} } = this.props
+    const { className, options = {} } = this.props
 
     const styles = {
       container: {
@@ -120,7 +121,7 @@ export class ReactCodeInput extends Component {
     }
 
     return (
-      <div className="react-code-input" style={styles.container}>
+      <div className={classNames(className, 'react-code-input')} style={styles.container}>
        {this.state.input.map((value, i) => {
          return (
            <input
@@ -167,7 +168,8 @@ ReactCodeInput.propTypes = {
   onChange: PropTypes.func,
   name: PropTypes.string,
   touch: PropTypes.func,
-  untouch: PropTypes.func
+  untouch: PropTypes.func,
+  className: PropTypes.string
 }
 
 export default ReactCodeInput

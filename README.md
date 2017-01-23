@@ -53,46 +53,18 @@ const props = {
 ...
 ```
 ## Props:
-##### type
 
-Only types like: `text`, `number`, `password` are accepted.
-
-##### options
-Set the styles as options
-```js
-...
-options: PropTypes.shape({
-  fontFamily: PropTypes.string,
-  borderRadius: PropTypes.string,
-  border: PropTypes.string,
-  boxShadow: PropTypes.string,
-  margin: PropTypes.string,
-  paddingLeft: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  fontSize: PropTypes.string,
-  backgroundColor: PropTypes.string,
-  color: PropTypes.string,
-}),
-...
-```
-##### digits
-Amount of characters to enter.
-
-##### value
-Setting the initial value of code input field.
-
-##### name
-Set the name of input field.
-
-##### onChange
-Function, which is called whenever there is a change of value in the input box.
-
-##### touch
-Marks the given fields as "touched" to show errors.
-
-##### untouch
-Clears the "touched" flag for the given fields.
+| Prop | Type | Description |
+|---|---|---|
+| type | string |Only types like: `text`, `number`, `password` are accepted.|
+| digits | number | Amount of characters to enter. |
+| value | string | Setting the initial value of code input field. |
+| name | string | Set the name of input field. |
+| onChange | func | Function, which is called whenever there is a change of value in the input box. |
+| touch | func | Marks the given fields as "touched" to show errors. |
+| untouch | func | Clears the "touched" flag for the given fields. |
+| className | string | Add classname to the root element |
+| options | object | Set the styles as options |
 
 ## Compatible with
 [`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)

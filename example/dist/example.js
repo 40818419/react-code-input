@@ -415,9 +415,16 @@
 /* 4 */
 /***/ function(module, exports) {
 
+	/*
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
+	
 	'use strict';
 	/* eslint-disable no-unused-vars */
 	
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 	
@@ -438,7 +445,7 @@
 			// Detect buggy property enumeration order in older V8 versions.
 	
 			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-			var test1 = new String('abc'); // eslint-disable-line
+			var test1 = new String('abc'); // eslint-disable-line no-new-wrappers
 			test1[5] = 'de';
 			if (Object.getOwnPropertyNames(test1)[0] === '5') {
 				return false;
@@ -466,7 +473,7 @@
 			}
 	
 			return true;
-		} catch (e) {
+		} catch (err) {
 			// We don't expect any of the above to throw, but better to be safe.
 			return false;
 		}
@@ -486,8 +493,8 @@
 				}
 			}
 	
-			if (Object.getOwnPropertySymbols) {
-				symbols = Object.getOwnPropertySymbols(from);
+			if (getOwnPropertySymbols) {
+				symbols = getOwnPropertySymbols(from);
 				for (var i = 0; i < symbols.length; i++) {
 					if (propIsEnumerable.call(from, symbols[i])) {
 						to[symbols[i]] = from[symbols[i]];
@@ -21598,10 +21605,10 @@
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {'use strict';
 	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
 	(function webpackUniversalModuleDefinition(root, factory) {
-		if (( false ? 'undefined' : _typeof(exports)) === 'object' && ( false ? 'undefined' : _typeof(module)) === 'object') module.exports = factory(__webpack_require__(1));else if (true) !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') exports["ReactCodeInput"] = factory(require("react"));else root["ReactCodeInput"] = factory(root["react"]);
+		if (( false ? 'undefined' : _typeof2(exports)) === 'object' && ( false ? 'undefined' : _typeof2(module)) === 'object') module.exports = factory(__webpack_require__(1));else if (true) !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if ((typeof exports === 'undefined' ? 'undefined' : _typeof2(exports)) === 'object') exports["ReactCodeInput"] = factory(require("react"));else root["ReactCodeInput"] = factory(root["react"]);
 	})(undefined, function (__WEBPACK_EXTERNAL_MODULE_1__) {
 		return (/******/function (modules) {
 				// webpackBootstrap
@@ -21673,6 +21680,10 @@
 	
 				var _react2 = _interopRequireDefault(_react);
 	
+				var _classnames = __webpack_require__(2);
+	
+				var _classnames2 = _interopRequireDefault(_classnames);
+	
 				function _interopRequireDefault(obj) {
 					return obj && obj.__esModule ? obj : { default: obj };
 				}
@@ -21696,12 +21707,12 @@
 				function _possibleConstructorReturn(self, call) {
 					if (!self) {
 						throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-					}return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+					}return call && ((typeof call === 'undefined' ? 'undefined' : _typeof2(call)) === "object" || typeof call === "function") ? call : self;
 				}
 	
 				function _inherits(subClass, superClass) {
 					if (typeof superClass !== "function" && superClass !== null) {
-						throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+						throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof2(superClass)));
 					}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 				}
 	
@@ -21817,7 +21828,9 @@
 						value: function render() {
 							var _this2 = this;
 	
-							var _props$options = this.props.options,
+							var _props = this.props,
+							    className = _props.className,
+							    _props$options = _props.options,
 							    options = _props$options === undefined ? {} : _props$options;
 	
 							var styles = {
@@ -21840,7 +21853,7 @@
 								}
 							};
 	
-							return _react2.default.createElement('div', { className: 'react-code-input', style: styles.container }, this.state.input.map(function (value, i) {
+							return _react2.default.createElement('div', { className: (0, _classnames2.default)(className, 'react-code-input'), style: styles.container }, this.state.input.map(function (value, i) {
 								return _react2.default.createElement('input', {
 									ref: i,
 									id: i,
@@ -21887,7 +21900,8 @@
 					onChange: _react.PropTypes.func,
 					name: _react.PropTypes.string,
 					touch: _react.PropTypes.func,
-					untouch: _react.PropTypes.func
+					untouch: _react.PropTypes.func,
+					className: _react.PropTypes.string
 				};
 	
 				exports.default = ReactCodeInput;
@@ -21898,6 +21912,79 @@
 			/***/function (module, exports) {
 	
 				module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+	
+				/***/
+			},
+			/* 2 */
+			/***/function (module, exports, __webpack_require__) {
+	
+				var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+	
+				var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+					return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+				} : function (obj) {
+					return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+				};
+	
+				/*!
+	     Copyright (c) 2016 Jed Watson.
+	     Licensed under the MIT License (MIT), see
+	     http://jedwatson.github.io/classnames
+	   */
+				/* global define */
+	
+				(function () {
+					'use strict';
+	
+					var hasOwn = {}.hasOwnProperty;
+	
+					function classNames() {
+						var classes = [];
+	
+						for (var i = 0; i < arguments.length; i++) {
+							var arg = arguments[i];
+							if (!arg) continue;
+	
+							var argType = typeof arg === 'undefined' ? 'undefined' : _typeof(arg);
+	
+							if (argType === 'string' || argType === 'number') {
+								classes.push(arg);
+							} else if (Array.isArray(arg)) {
+								classes.push(classNames.apply(null, arg));
+							} else if (argType === 'object') {
+								for (var key in arg) {
+									if (hasOwn.call(arg, key) && arg[key]) {
+										classes.push(key);
+									}
+								}
+							}
+						}
+	
+						return classes.join(' ');
+					}
+	
+					if (typeof module !== 'undefined' && module.exports) {
+						module.exports = classNames;
+					} else if ("function" === 'function' && _typeof(__webpack_require__(3)) === 'object' && __webpack_require__(3)) {
+						// register as 'classnames', consistent with npm package name
+						!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+							return classNames;
+						}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+					} else {
+						window.classNames = classNames;
+					}
+				})();
+	
+				/***/
+			},
+			/* 3 */
+			/***/function (module, exports) {
+	
+				/* WEBPACK VAR INJECTION */(function (__webpack_amd_options__) {
+					module.exports = __webpack_amd_options__;
+	
+					/* WEBPACK VAR INJECTION */
+				}).call(exports, {});
 	
 				/***/
 			}
