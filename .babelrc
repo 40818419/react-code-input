@@ -4,9 +4,14 @@
     "stage-0",
     "react"
   ],
+  "compact": true,
   "env": {
     "test": {
       "plugins": ["istanbul"]
     }
-  }
+  },
+  "plugins": [
+    "transform-runtime",
+    "transform-decorators-legacy"
+  ],
 }

@@ -63,8 +63,10 @@ const props = {
 | onChange | func | Function, which is called whenever there is a change of value in the input box. |
 | touch | func | Marks the given fields as "touched" to show errors. |
 | untouch | func | Clears the "touched" flag for the given fields. |
-| className | string | Add classname to the root element |
-| options | object | Set the styles as options |
+| className | string | Add classname to the root element. |
+| options | object | Set the styles as options. |
+| isValid | bool | Returns true if an input element contains valid data. |
+| disabled | bool | When present, it specifies that the element should be disabled |
 
 ## Compatible with
 [`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)

@@ -2,12 +2,11 @@
   "name": "react-code-input",
   "version": "1.0.9",
   "description": "React component for entering and validating numbers, text or password.",
-  "main": "lib/index.js",
+  "main": "lib/ReactCodeInput.js",
   "scripts": {
-    "start": "webpack && webpack-dev-server --hot --content-base example/",
-    "build": "webpack && cd styles && sass style.scss style.css",
-    "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/_mocha test/*.js && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage && rm -rf ./coverage",
-    "test_": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec --compilers js:babel-register && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage && rm -rf ./coverage"
+    "start": "gulp bluekit:build && webpack && webpack-dev-server --content-base example/",
+    "build": "gulp bluekit:build && webpack && cd styles && sass style.scss style.css",
+    "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/_mocha test/*.js && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage && rm -rf ./coverage"
   },
   "nyc": {
     "require": [
@@ -41,10 +40,14 @@
     "react": "^15.4.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.22.2",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
+    "babel-plugin-transform-runtime": "6.4.3",
     "babel-plugin-istanbul": "^3.1.2",
-    "babel-preset-es2015": "^6.18.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
@@ -63,7 +66,9 @@
     "nyc": "^10.0.0",
     "postcss-loader": "^1.1.1",
     "react-addons-test-utils": "^15.4.1",
+    "react-bluekit": "^0.3.1",
     "react-markdown": "^2.4.2",
+    "react-hot-loader": "1.3.0",
     "sass-loader": "^4.0.2",
     "sinon": "^1.17.7",
     "style-loader": "^0.13.1",
