@@ -2,10 +2,8 @@ const path = require("path");
 const loaders = [
   {
     test: /\.js$/,
-    loader: "babel-loader",
-    query: {
-      presets: ["es2015", "stage-0", "react"]
-    }
+    loaders: ['react-hot', 'babel'],
+    exclude: /node_modules/
   },
   {
     test: /\.json$/,
@@ -18,11 +16,11 @@ const loaders = [
 ];
 
 module.exports = [{
-  entry: "./src/index.js",
+  entry: "./src/ReactCodeInput.js",
   devtool: "source-map",
   output: {
     path: path.resolve(__dirname, "lib"),
-    filename: "index.js",
+    filename: "ReactCodeInput.js",
     libraryTarget: "umd",
     library: "ReactCodeInput"
   },
@@ -34,7 +32,6 @@ module.exports = [{
   }
 },
 {
-  entry: "./example/example.js",
   output: {
     path: path.resolve(__dirname, "example/dist"),
     filename: "example.js"
@@ -42,6 +39,10 @@ module.exports = [{
   module: {
     loaders
   },
+  entry: [
+    'babel-polyfill',
+    './example/example.js'
+  ],
   stats: {
     colors: true
   },
