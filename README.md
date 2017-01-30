@@ -42,31 +42,29 @@ const props = {
   className: reactCodeInput,
   inputStyle: {
     fontFamily: 'monospace',
-    borderRadius: '6px',
-    border:  '2px solid lightgrey',
-    boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
     margin:  '4px',
-    paddingLeft: '6px',
-    width: '32px',
-    height: '44px',
-    fontSize: '30px',
-    backgroundColor: 'white',
-    color:'black',
     MozAppearance: 'textfield'
+    width: '15px',
+    borderRadius: '3px',
+    fontSize: '14px',
+    height: '26px',
+    paddingLeft: '7px',
+    backgroundColor: 'black',
+    color: 'lightskyblue',
+    border: '1px solid lightskyblue'
   },
   inputStyleInvalid: {
     fontFamily: 'monospace',
-    borderRadius: '6px',
-    border:  '2px solid #eed3d7',
-    boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
     margin:  '4px',
-    paddingLeft: '6px',
-    width: '32px',
-    height: '44px',
-    fontSize: '30px',
-    backgroundColor: '#f2dede',
-    color: '#b94a48',
     MozAppearance: 'textfield'
+    width: '15px',
+    borderRadius: '3px',
+    fontSize: '14px',
+    height: '26px',
+    paddingLeft: '7px',
+    backgroundColor: 'black',
+    color: 'red',
+    border: '1px solid red'
   }
 }
 ...
