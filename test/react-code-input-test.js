@@ -21,7 +21,7 @@ describe("CodeInputField", () => {
   it(`renders field without any values`, () => {
     const wrapper = shallow(<CodeInputField />)
     expect(wrapper.find('input')).to.have.length(4)
-    expect(wrapper.state().digits).to.equal(4)
+    expect(wrapper.state().fields).to.equal(4)
     expect(wrapper.state().value).to.equal("")
     expect(wrapper.state().type).to.equal("text")
     expect(wrapper.state().input).to.be.instanceof(Array)
@@ -30,7 +30,7 @@ describe("CodeInputField", () => {
   })
 
   it(`renders component with value: ${numbers}`, () => {
-    const wrapper = render(<CodeInputField value={numbers} digits={6} type="number" />),
+    const wrapper = render(<CodeInputField value={numbers} fields={6} type="number" />),
           val = []
     for (let i = 0; i < numbers.length; i += 1) {
       val.push(wrapper.find("input")[i].attribs.value)
@@ -40,7 +40,7 @@ describe("CodeInputField", () => {
   })
 
   it(`renders component with value: ${chars}`, () => {
-    const wrapper = render(<CodeInputField value={chars} digits={6} type="text" />),
+    const wrapper = render(<CodeInputField value={chars} fields={6} type="text" />),
           val = []
     for (let i = 0; i < chars.length; i += 1) {
       val.push(wrapper.find("input")[i].attribs.value)
@@ -49,9 +49,9 @@ describe("CodeInputField", () => {
     expect(val.join("")).to.be.an('string')
   })
 
-  it(`mount component with props: "digits={6}"`, () => {
-    const wrapper = mount(<CodeInputField digits={6} />)
-    expect(wrapper.props().digits).to.eql(6)
+  it(`mount component with props: "fields={6}"`, () => {
+    const wrapper = mount(<CodeInputField fields={6} />)
+    expect(wrapper.props().fields).to.eql(6)
   })
 
   it(`should have 4 input felds`, () => {
@@ -61,7 +61,7 @@ describe("CodeInputField", () => {
 
   it(`simulates onChange events`, () => {
     const onChange = sinon.spy()
-    const wrapper = mount(<CodeInputField onChange={onChange} digits={3} value="123" type="number" />)
+    const wrapper = mount(<CodeInputField onChange={onChange} fields={3} value="123" type="number" />)
     const element = wrapper.find('input').at(0)
     element.simulate('change')
     element.simulate('keydown', { keyCode: 8 })
@@ -71,14 +71,14 @@ describe("CodeInputField", () => {
 
   it(`mount component with type="number" but string provided`, () => {
     const onChange = sinon.spy()
-    const wrapper = mount(<CodeInputField onChange={onChange} digits={3} value="a23" type="number" />)
+    const wrapper = mount(<CodeInputField onChange={onChange} fields={3} value="a23" type="number" />)
     const element = wrapper.find('input').at(0)
     element.simulate('change')
     expect(wrapper.state().value).to.equal('a23')
   })
 
    it(`simulates focus and blur`, () => {
-    const wrapper = mount(<CodeInputField digits={4} value="1234" />)
+    const wrapper = mount(<CodeInputField fields={4} value="1234" />)
     const element = wrapper.find('input').at(0)
     element.simulate('focus')
     element.simulate('blur')
