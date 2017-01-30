@@ -85,7 +85,7 @@ const props = {
 | className | string | Add classname to the root element. |
 | style | object | Setting the styles of container element. |
 | inputStyle | object | Setting the styles of each input field. |
-| inputStyleInvalid | object | Setting the styles of each input field if `isValid` prop is false |
+| inputStyleInvalid | object | Setting the styles of each input field if `isValid` prop is `false`. |
 | isValid | bool | Returns true if an input element contains valid data. |
 | disabled | bool | When present, it specifies that the element should be disabled |
 
