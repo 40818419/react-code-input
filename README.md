@@ -87,7 +87,7 @@ const props = {
 | inputStyle | object | Setting the styles of each input field. |
 | inputStyleInvalid | object | Setting the styles of each input field if `isValid` prop is `false`. |
 | isValid | bool | Returns true if an input element contains valid data. |
-| disabled | bool | When present, it specifies that the element should be disabled |
+| disabled | bool | When present, it specifies that the element should be disabled. |
 
 ## Compatible with
 [`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)
