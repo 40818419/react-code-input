@@ -4,34 +4,34 @@ import classNames from 'classnames'
 class ReactCodeInput extends Component {
   constructor(props) {
     super(props)
+
+    const { value, fields, type, isValid, disabled } = props
+
     this.state = {
-      value: props.value || '',
-      digits: props.digits,
-      type: props.type || 'text',
+      value,
+      fields,
+      type,
       input: [],
-      isValid: props.isValid,
-      disabled: props.disabled
+      isValid,
+      disabled
     }
-
-    for (let i = 0; i < Number(this.state.digits); i += 1) {
-      const value = [...this.state.value][i] || ''
-      this.state.input.push(value)
+    for (let i = 0; i < Number(this.state.fields); i += 1) {
+      if (i < 32) {
+        const value = [...this.state.value][i] || ''
+        this.state.input.push(value)
+      }
     }
-
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       isValid: nextProps.isValid,
-      value: nextProps.value
+      value: nextProps.value,
+      disabled: nextProps.disabled
     })
   }
 
   handleBlur(e) {
-    if (!e.target) {
-      return true
-    }
-
     this.handleTouch(e.target.value)
   }
 
@@ -112,39 +112,58 @@ class ReactCodeInput extends Component {
   }
 
   render() {
-    const { className, options = {}, type } = this.props,
-          { disabled, input, isValid } = this.state
+    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type } = this.props,
+          { disabled, input, isValid } = this.state,
+          styles = {
+            container: style,
+            input: isValid ? inputStyle : inputStyleInvalid
+          }
 
-    const styles = {
-      container: {
+    Object.assign(styles.container, {
         display: 'inline-block'
-      },
-      input: {
+    })
+
+    if (!className && Object.keys(inputStyle).length === 0) {
+      Object.assign(inputStyle, {
         fontFamily: 'monospace',
-        borderRadius: options.borderRadius || '6px',
-        border: options.border || '1px solid',
-        boxShadow: options.boxShadow || '0px 0px 10px 0px rgba(0,0,0,.10)',
-        margin: options.margin || '4px',
-        paddingLeft: options.paddingLeft || '10px',
-        width: options.width || '30px',
-        height: options.height || '42px',
-        fontSize: options.fontSize || '32px',
-        backgroundColor: options.backgroundColor || 'white',
-        color: options.color || 'black',
+        borderRadius: '6px',
+        border: '1px solid',
+        boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
+        margin: '4px',
+        paddingLeft: '10px',
+        width: '30px',
+        height: '42px',
+        fontSize: '32px',
+        backgroundColor: 'white',
+        color: 'black',
         MozAppearance: 'textfield',
-        borderColor: options.borderColor || 'lightgrey'
-      }
+        borderColor: 'lightgrey'
+      })
+    }
+
+    if (!className && Object.keys(inputStyleInvalid).length === 0) {
+      Object.assign(inputStyleInvalid, {
+        fontFamily: 'monospace',
+        borderRadius: '6px',
+        border: '1px solid',
+        boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
+        margin: '4px',
+        paddingLeft: '10px',
+        width: '30px',
+        height: '42px',
+        fontSize: '32px',
+        MozAppearance: 'textfield',
+        color: '#b94a48',
+        backgroundColor: '#f2dede',
+        borderColor: '#eed3d7'
+      })
     }
 
     if (disabled) {
-      Object.assign(styles.input, { cursor: 'not-allowed' })
-    }
-
-    if (isValid === false) {
       Object.assign(styles.input, {
-        color: options.colorInvalid || '#b94a48',
-        backgroundColor: options.backgroundColorInvalid || '#f2dede',
-        borderColor: options.borderColorInvalid || '#eed3d7'
+        cursor: 'not-allowed',
+        borderColor: 'lightgrey',
+        backgroundColor: '#efeff1'
       })
     }
 
@@ -169,6 +188,7 @@ class ReactCodeInput extends Component {
              onChange={(e) => this.handleChange(e)}
              onKeyDown={(e) => this.onKeyDown(e)}
              disabled={disabled}
+             data-valid={isValid}
             />
          )
        })}
@@ -180,12 +200,14 @@ class ReactCodeInput extends Component {
 ReactCodeInput.defaultProps = {
   isValid: true,
   disabled: false,
-  digits: 4
+  fields: 4,
+  value: '',
+  type: 'text'
 }
 ReactCodeInput.propTypes = {
   options: PropTypes.object,
   type: PropTypes.oneOf(['text', 'number', 'password']),
-  digits: PropTypes.number,
+  fields: PropTypes.number,
   value: PropTypes.string,
   onChange: PropTypes.func,
   name: PropTypes.string,
@@ -193,7 +215,10 @@ ReactCodeInput.propTypes = {
   untouch: PropTypes.func,
   className: PropTypes.string,
   isValid: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  style: PropTypes.object,
+  inputStyle: PropTypes.object,
+  inputStyleInvalid: PropTypes.object
 }
 
 export default ReactCodeInput

@@ -15,7 +15,7 @@ React component for entering and validating code.
 ![Numeric input](https://cloud.githubusercontent.com/assets/2235499/21593670/eafea336-d119-11e6-9d4b-738141f24b44.png)
 ```js
 ...
-<ReactCodeInput type='number' digits={6} />
+<ReactCodeInput type='number' fields={6} />
 ...
 ```
 
@@ -23,50 +23,73 @@ React component for entering and validating code.
 ![Text input](https://cloud.githubusercontent.com/assets/2235499/21593708/61cebee2-d11a-11e6-9b8d-e99dbeeec23b.png)
 ```js
 ...
-<ReactCodeInput type='text' digits={6} />
+<ReactCodeInput type='text' fields={6} />
 ...
 ```
 ### Password input:
 ![Password input](https://cloud.githubusercontent.com/assets/2235499/21593710/65ed7252-d11a-11e6-995f-f0127af5bd9f.png)
 ```js
 ...
-<ReactCodeInput type='password' digits={6} />
+<ReactCodeInput type='password' fields={6} />
 ...
 ```
 ### Numeric input with options:
 ![Numeric input with options](https://cloud.githubusercontent.com/assets/2235499/21593674/f3bb887c-d119-11e6-8b3f-ba478a0f4692.png)
 ```js
+import { reactCodeInput } from 'CodeInputField.scss'
+...
 const props = {
-  options: {
-    width: '15px',
-    borderRadius: '3px',
-    fontSize: '14px',
-    height: '26px',
-    paddingLeft: '7px',
-    backgroundColor: 'black',
-    color: 'lightskyblue',
-    border: '1px solid lightskyblue'
+  className: reactCodeInput,
+  inputStyle: {
+    fontFamily: 'monospace',
+    borderRadius: '6px',
+    border:  '2px solid lightgrey',
+    boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
+    margin:  '4px',
+    paddingLeft: '6px',
+    width: '32px',
+    height: '44px',
+    fontSize: '30px',
+    backgroundColor: 'white',
+    color:'black',
+    MozAppearance: 'textfield'
+  },
+  inputStyleInvalid: {
+    fontFamily: 'monospace',
+    borderRadius: '6px',
+    border:  '2px solid #eed3d7',
+    boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
+    margin:  '4px',
+    paddingLeft: '6px',
+    width: '32px',
+    height: '44px',
+    fontSize: '30px',
+    backgroundColor: '#f2dede',
+    color: '#b94a48',
+    MozAppearance: 'textfield'
   }
 }
 ...
-<ReactCodeInput type='number' digits={6} {...props}/>
+<ReactCodeInput type='number' fields={6} {...props}/>
 ...
 ```
 ## Props:
 
-| Prop | Type | Description |
+| Property | Type | Description |
 |---|---|---|
-| type | string |Only types like: `text`, `number`, `password` are accepted.|
-| digits | number | Amount of characters to enter. |
-| value | string | Setting the initial value of code input field. |
-| name | string | Set the name of input field. |
-| onChange | func | Function, which is called whenever there is a change of value in the input box. |
+| type | string | Only types like: `text`, `number`, `password` are accepted.|
+| fields | number | Allowed amount of characters to enter. |
+| value | string | Setting the initial value of code input field. |
+| name | string | Setting the name of component. |
+| onChange | func | Function, which is called whenever there is a change of value in the input box. |
 | touch | func | Marks the given fields as "touched" to show errors. |
 | untouch | func | Clears the "touched" flag for the given fields. |
-| className | string | Add classname to the root element. |
-| options | object | Set the styles as options. |
-| isValid | bool | Returns true if an input element contains valid data. |
-| disabled | bool | When present, it specifies that the element should be disabled |
+| className | string | Add classname to the root element. |
+| style | object | Setting the styles of container element. |
+| inputStyle | object | Setting the styles of each input field. |
+| inputStyleInvalid | object | Setting the styles of each input field if `isValid` prop is false |
+| isValid | bool | Returns true if an input element contains valid data. |
+| disabled | bool | When present, it specifies that the element should be disabled |
 
 ## Compatible with
 [`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)
