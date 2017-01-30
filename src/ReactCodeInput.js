@@ -13,7 +13,19 @@ class ReactCodeInput extends Component {
       type,
       input: [],
       isValid,
-      disabled
+      disabled,
+      defaultInputStyle: {
+        fontFamily: 'monospace',
+        MozAppearance: 'textfield',
+        borderRadius: '6px',
+        border: '1px solid',
+        boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
+        margin: '4px',
+        paddingLeft: '10px',
+        width: '30px',
+        height: '42px',
+        fontSize: '32px'
+      }
     }
     for (let i = 0; i < Number(this.state.fields); i += 1) {
       if (i < 32) {
@@ -36,11 +48,13 @@ class ReactCodeInput extends Component {
   }
 
   handleTouch(value) {
-    if (typeof this.props.touch === 'function' && typeof this.props.untouch === 'function') {
+    const { touch, untouch, name } = this.props
+
+    if (typeof touch === 'function' && typeof untouch === 'function') {
       if (value === '') {
-        this.props.touch(this.props.name)
+        touch(name)
       } else {
-        this.props.untouch(this.props.name)
+        untouch(name)
       }
     }
   }
@@ -113,7 +127,7 @@ class ReactCodeInput extends Component {
 
   render() {
     const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type } = this.props,
-          { disabled, input, isValid } = this.state,
+          { disabled, input, isValid, defaultInputStyle } = this.state,
           styles = {
             container: style,
             input: isValid ? inputStyle : inputStyleInvalid
@@ -125,34 +139,16 @@ class ReactCodeInput extends Component {
 
     if (!className && Object.keys(inputStyle).length === 0) {
       Object.assign(inputStyle, {
-        fontFamily: 'monospace',
-        borderRadius: '6px',
-        border: '1px solid',
-        boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
-        margin: '4px',
-        paddingLeft: '10px',
-        width: '30px',
-        height: '42px',
-        fontSize: '32px',
-        backgroundColor: 'white',
+        ...defaultInputStyle,
         color: 'black',
-        MozAppearance: 'textfield',
+        backgroundColor: 'white',
         borderColor: 'lightgrey'
       })
     }
 
     if (!className && Object.keys(inputStyleInvalid).length === 0) {
       Object.assign(inputStyleInvalid, {
-        fontFamily: 'monospace',
-        borderRadius: '6px',
-        border: '1px solid',
-        boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
-        margin: '4px',
-        paddingLeft: '10px',
-        width: '30px',
-        height: '42px',
-        fontSize: '32px',
-        MozAppearance: 'textfield',
+        ...defaultInputStyle,
         color: '#b94a48',
         backgroundColor: '#f2dede',
         borderColor: '#eed3d7'
@@ -162,6 +158,7 @@ class ReactCodeInput extends Component {
     if (disabled) {
       Object.assign(styles.input, {
         cursor: 'not-allowed',
+        color: 'lightgrey',
         borderColor: 'lightgrey',
         backgroundColor: '#efeff1'
       })
