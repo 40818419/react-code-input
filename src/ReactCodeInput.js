@@ -21,10 +21,11 @@ class ReactCodeInput extends Component {
         border: '1px solid',
         boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
         margin: '4px',
-        paddingLeft: '10px',
-        width: '30px',
+        paddingLeft: '8px',
+        width: '36px',
         height: '42px',
-        fontSize: '32px'
+        fontSize: '32px',
+        boxSizing: 'border-box'
       }
     }
     for (let i = 0; i < Number(this.state.fields); i += 1) {
