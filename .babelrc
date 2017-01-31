@@ -9,9 +9,5 @@
     "test": {
       "plugins": ["istanbul"]
     }
-  },
-  "plugins": [
-    "transform-runtime",
-    "transform-decorators-legacy"
-  ],
+  }
 }
