@@ -95,6 +95,7 @@ const props = {
 ## Donate
 
 ![Bitcoins](https://user-images.githubusercontent.com/2235499/30970275-020c0342-a465-11e7-9a35-f139648a4998.png) BTC: 16ej11QdynM4goVEZNpxkH98Rm9rnc4ocC
+
 ![Ethereum](https://user-images.githubusercontent.com/2235499/30970274-02092564-a465-11e7-9ca0-f8cf8db74e15.png) ETH: 0xebdd15e8c0f96cf06b58c586ca3368aea04949fd
 
 ## License
