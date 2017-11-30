@@ -79,13 +79,22 @@ class ReactCodeInput extends Component {
       input[target] = this.refs[target].value
       value = input.join('')
 
-      this.setState({ value, input })
+      if (value.length > 1) {
+        value.split('').map((s, i) => {
+          if (this.refs[i]) {
+            this.refs[i].value = s
+          }
+          return
+        })
+      }
+      const newTarget = this.refs[input.length === value.length ? value.length - 1 : value.length]
 
-      const newTarget = this.refs[target + 1]
       if (newTarget) {
         newTarget.focus()
         newTarget.select()
       }
+
+      this.setState({ value, input })
     }
     if ('onChange' in this.props) {
       if (value) {
@@ -179,7 +188,7 @@ class ReactCodeInput extends Component {
              type={type}
              min={0}
              max={9}
-             maxLength={1}
+             maxLength={input.length === i + 1 ? 1 : input.length}
              style={styles.input}
              autoComplete="off"
              onFocus={(e) => e.target.select(e)}
