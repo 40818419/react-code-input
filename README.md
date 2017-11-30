@@ -75,7 +75,7 @@ const props = {
 
 | Property | Type | Description |
 |:---|:---|:---|
-| type | string | Only types like: `text`, `number`, `password` are accepted.|
+| type | string | Only types like: `text`, `number`, `password` and `tel` are accepted.|
 | fields | number | Allowed amount of characters to enter. |
 | value | string | Setting the initial value of code input field. |
 | name | string | Setting the name of component. |
