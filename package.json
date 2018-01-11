@@ -26,7 +26,10 @@
     "code",
     "input",
     "chiffre",
-    "field"
+    "field",
+    "sipher",
+    "PIN",
+    "pin-code"
   ],
   "author": "Konstantin Kulinicenko",
   "license": "MIT",
