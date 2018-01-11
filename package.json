@@ -57,6 +57,7 @@
     "codacy-coverage": "^2.0.0",
     "css-loader": "^0.25.0",
     "enzyme": "^2.8.2",
+    "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "jsdom": "^9.9.1",
     "jsdom-global": "2.1.1",
