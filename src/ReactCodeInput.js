@@ -84,7 +84,7 @@ class ReactCodeInput extends Component {
           if (this.refs[i]) {
             this.refs[i].value = s
           }
-          return
+          return false
         })
       }
       const newTarget = this.refs[input.length === value.length ? value.length - 1 : value.length]

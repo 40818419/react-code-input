@@ -1,12 +1,13 @@
 import 'jsdom-global/register'
 import React from 'react'
 import chai, { expect } from 'chai'
-import { render, shallow, mount } from 'enzyme'
+import { configure, render, shallow, mount } from 'enzyme'
 import chaiEnzyme from 'chai-enzyme'
 import sinon from 'sinon'
-
+import Adapter from 'enzyme-adapter-react-16'
 import CodeInputField from '../src/ReactCodeInput.js'
 
+configure({ adapter: new Adapter() })
 chai.use(chaiEnzyme())
 
 const numbers = "123456",
@@ -77,12 +78,12 @@ describe("CodeInputField", () => {
     expect(wrapper.state().value).to.equal('a23')
   })
 
-   it(`simulates focus and blur`, () => {
+  it(`simulates focus and blur`, () => {
     const wrapper = mount(<CodeInputField fields={4} value="1234" />)
     const element = wrapper.find('input').at(0)
     element.simulate('focus')
     element.simulate('blur')
-    expect(wrapper.find('input').at(0).node).to.be.eql(document.activeElement)
+    expect(element.instance()).to.be.eql(document.activeElement)
   })
 
 })

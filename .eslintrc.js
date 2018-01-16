@@ -144,7 +144,6 @@ module.exports = {
         "no-shadow": "off",
         "no-shadow-restricted-names": "error",
         "no-spaced-func": "error",
-        "no-string-refs": "error",
         "no-sync": "error",
         "no-throw-literal": "error",
         "no-trailing-spaces": "error",
