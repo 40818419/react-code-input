@@ -35,6 +35,7 @@ class ReactCodeInput extends Component {
         this.state.input.push(value)
       }
     }
+    this.textInput = []
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,23 +72,23 @@ class ReactCodeInput extends Component {
           return
         }
         if (value.length > 1) {
-          this.refs[target].value = value.slice(-1)
+          this.textInput[target].value = value.slice(-1)
         }
       }
 
       const input = this.state.input.slice()
-      input[target] = this.refs[target].value
+      input[target] = this.textInput[target].value
       value = input.join('')
 
       if (value.length > 1) {
         value.split('').map((s, i) => {
-          if (this.refs[i]) {
-            this.refs[i].value = s
+          if (this.textInput[i]) {
+            this.textInput[i].value = s
           }
           return false
         })
       }
-      const newTarget = this.refs[input.length === value.length ? value.length - 1 : value.length]
+      const newTarget = this.textInput[input.length === value.length ? value.length - 1 : value.length]
 
       if (newTarget) {
         newTarget.focus()
@@ -106,19 +107,19 @@ class ReactCodeInput extends Component {
 
   onKeyDown(e) {
     const target = Number(e.target.id),
-          prevTarget = this.refs[target - 1]
+          prevTarget = this.textInput[target - 1]
     let input, value
 
     switch (e.keyCode) {
       case 8:
         e.preventDefault()
-        this.refs[target].value = ''
+        this.textInput[target].value = ''
         input = this.state.input.slice()
         input[target] = ''
         value = input.join('')
 
         this.setState({ value, input })
-        if (this.refs[target].value === '') {
+        if (this.textInput[target].value === '') {
           if (prevTarget) {
             prevTarget.focus()
             prevTarget.select()
@@ -180,7 +181,7 @@ class ReactCodeInput extends Component {
        {input.map((value, i) => {
          return (
            <input
-             ref={i}
+             ref={(ref) => this.textInput[i] = ref}
              id={i}
              autoFocus={(i === 0) ? 'autoFocus' : ''}
              defaultValue={value}
