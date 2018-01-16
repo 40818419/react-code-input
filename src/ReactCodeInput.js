@@ -181,7 +181,9 @@ class ReactCodeInput extends Component {
        {input.map((value, i) => {
          return (
            <input
-             ref={(ref) => this.textInput[i] = ref}
+             ref={(ref) => {
+               this.textInput[i] = ref
+             }}
              id={i}
              autoFocus={(i === 0) ? 'autoFocus' : ''}
              defaultValue={value}
