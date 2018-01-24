@@ -98,10 +98,7 @@ const props = {
 
 ![Ethereum](https://user-images.githubusercontent.com/2235499/30970274-02092564-a465-11e7-9ca0-f8cf8db74e15.png) ETH: 0xebdd15e8c0f96cf06b58c586ca3368aea04949fd
 
+[![Beerpay](https://beerpay.io/40818419/react-code-input/badge.svg?style=beer-square)](https://beerpay.io/40818419/react-code-input)  [![Beerpay](https://beerpay.io/40818419/react-code-input/make-wish.svg?style=flat-square)](https://beerpay.io/40818419/react-code-input?focus=wish)
+
 ## License
 MIT
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/40818419/react-code-input/badge.svg?style=beer-square)](https://beerpay.io/40818419/react-code-input)  [![Beerpay](https://beerpay.io/40818419/react-code-input/make-wish.svg?style=flat-square)](https://beerpay.io/40818419/react-code-input?focus=wish)
