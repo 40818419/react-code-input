@@ -100,3 +100,8 @@ const props = {
 
 ## License
 MIT
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/40818419/react-code-input/badge.svg?style=beer-square)](https://beerpay.io/40818419/react-code-input)  [![Beerpay](https://beerpay.io/40818419/react-code-input/make-wish.svg?style=flat-square)](https://beerpay.io/40818419/react-code-input?focus=wish)
