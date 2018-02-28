@@ -66,18 +66,13 @@ class ReactCodeInput extends Component {
     const target = Number(e.target.id)
     let value = String(e.target.value)
 
-    if (value !== '') {
-      if (this.state.type === 'number') {
-        if (!value.match(/(\d)/g)) {
-          return
-        }
-        if (value.length > 1) {
-          this.textInput[target].value = value.slice(-1)
-        }
-      }
+    if (this.state.type === 'number') {
+      value = value.replace(/[^\d]/g, '')
+    }
 
+    if (value !== '') {
       const input = this.state.input.slice()
-      input[target] = this.textInput[target].value
+      input[target] = value
       value = input.join('')
 
       if (value.length > 1) {

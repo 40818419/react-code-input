@@ -67,7 +67,38 @@ describe("CodeInputField", () => {
     element.simulate('change')
     element.simulate('keydown', { keyCode: 8 })
     element.simulate('keydown', { keyCode: 13 })
+    element.simulate('keydown', { keyCode: 65 }) // "a"
     expect(wrapper.state().value).to.equal('23')
+  })
+
+  it(`simulates onChange from paste type=text`, () => {
+    const onChange = sinon.spy()
+    const wrapper = mount(<CodeInputField onChange={onChange} fields={6} type="text" />)
+    const element = wrapper.find('input').at(0)
+    const target = element.instance()
+    target.value = chars
+    element.simulate('change', { target })
+    expect(wrapper.state().value).to.equal(chars)
+  })
+
+  it(`simulates onChange from paste type=number`, () => {
+    const onChange = sinon.spy()
+    const wrapper = mount(<CodeInputField onChange={onChange} fields={6} type="number" />)
+    const element = wrapper.find('input').at(0)
+    const target = element.instance()
+    target.value = numbers
+    element.simulate('change', { target })
+    expect(wrapper.state().value).to.equal(numbers)
+  })
+
+  it(`simulates onChange from paste type=number strip non-numeric characters`, () => {
+    const onChange = sinon.spy()
+    const wrapper = mount(<CodeInputField onChange={onChange} fields={6} type="number" />)
+    const element = wrapper.find('input').at(0)
+    const target = element.instance()
+    target.value = chars
+    element.simulate('change', { target })
+    expect(wrapper.state().value).to.equal(chars.replace(/[^\d]/g, ''))
   })
 
   it(`mount component with type="number" but string provided`, () => {
