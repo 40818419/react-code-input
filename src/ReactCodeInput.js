@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
+const BACKSPACE_KEY = 8
+const LEFT_ARROW_KEY = 37
+const UP_ARROW_KEY = 38
+const RIGHT_ARROW_KEY = 39
+const DOWN_ARROW_KEY = 40
+
 class ReactCodeInput extends Component {
   constructor(props) {
     super(props)
@@ -102,11 +108,12 @@ class ReactCodeInput extends Component {
 
   onKeyDown(e) {
     const target = Number(e.target.id),
+          nextTarget = this.textInput[target + 1],
           prevTarget = this.textInput[target - 1]
     let input, value
 
     switch (e.keyCode) {
-      case 8:
+      case BACKSPACE_KEY:
         e.preventDefault()
         this.textInput[target].value = ''
         input = this.state.input.slice()
@@ -121,12 +128,31 @@ class ReactCodeInput extends Component {
           }
         }
         break
-      case 38:
+
+      case LEFT_ARROW_KEY:
+        e.preventDefault()
+        if (prevTarget) {
+          prevTarget.focus()
+          prevTarget.select()
+        }
+        break
+
+      case RIGHT_ARROW_KEY:
+        e.preventDefault()
+        if (nextTarget) {
+          nextTarget.focus()
+          nextTarget.select()
+        }
+        break
+
+      case UP_ARROW_KEY:
         e.preventDefault()
         break
-      case 40:
+
+      case DOWN_ARROW_KEY:
         e.preventDefault()
         break
+
       default:
         break
     }
