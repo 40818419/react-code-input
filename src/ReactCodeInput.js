@@ -121,6 +121,12 @@ class ReactCodeInput extends Component {
           }
         }
         break
+      case 38:
+        e.preventDefault()
+        break
+      case 40:
+        e.preventDefault()
+        break
       default:
         break
     }
