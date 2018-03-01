@@ -117,4 +117,18 @@ describe("CodeInputField", () => {
     expect(element.instance()).to.be.eql(document.activeElement)
   })
 
+  it(`focuses next on right arrow key press`, () => {
+    const wrapper = mount(<CodeInputField fields={4} value="abc" />)
+    const element = wrapper.find('input').at(1)
+    element.simulate('keydown', { keyCode: 39 })
+    expect(wrapper.find('input').at(2).instance()).to.be.eql(document.activeElement)
+  })
+
+  it(`focuses previous on left arrow key press`, () => {
+    const wrapper = mount(<CodeInputField fields={4} value="ab" />)
+    const element = wrapper.find('input').at(2)
+    element.simulate('keydown', { keyCode: 37 })
+    expect(wrapper.find('input').at(1).instance()).to.be.eql(document.activeElement)
+  })
+
 })
