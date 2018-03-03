@@ -43,7 +43,7 @@ const props = {
   inputStyle: {
     fontFamily: 'monospace',
     margin:  '4px',
-    MozAppearance: 'textfield'
+    MozAppearance: 'textfield',
     width: '15px',
     borderRadius: '3px',
     fontSize: '14px',
@@ -56,7 +56,7 @@ const props = {
   inputStyleInvalid: {
     fontFamily: 'monospace',
     margin:  '4px',
-    MozAppearance: 'textfield'
+    MozAppearance: 'textfield',
     width: '15px',
     borderRadius: '3px',
     fontSize: '14px',
