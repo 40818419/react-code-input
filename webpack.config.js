@@ -1,19 +1,4 @@
 const path = require("path");
-const loaders = [
-  {
-    test: /\.js$/,
-    loaders: ['react-hot', 'babel'],
-    exclude: /node_modules/
-  },
-  {
-    test: /\.json$/,
-    loader: "json-loader"
-  },
-  {
-    test: /\.css$/,
-    loaders: ["css", "sass"]
-  }
-];
 
 module.exports = [{
   entry: "./src/ReactCodeInput.js",
@@ -25,7 +10,21 @@ module.exports = [{
     library: "ReactCodeInput"
   },
   module: {
-    loaders
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.json$/,
+        loader: "json-loader"
+      },
+      {
+        test: /\.css$/,
+        loaders: ["css", "sass"]
+      }
+    ]
   },
   externals: {
     react: "react"
@@ -37,7 +36,21 @@ module.exports = [{
     filename: "example.js"
   },
   module: {
-    loaders
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['react-hot', 'babel'],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.json$/,
+        loader: "json-loader"
+      },
+      {
+        test: /\.css$/,
+        loaders: ["css", "sass"]
+      }
+    ]
   },
   entry: [
     'babel-polyfill',
