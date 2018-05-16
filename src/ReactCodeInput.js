@@ -69,48 +69,60 @@ class ReactCodeInput extends Component {
   }
 
   handleChange(e) {
-    const target = Number(e.target.id)
-    let value = String(e.target.value)
+    let value = String(e.target.value);
 
     if (this.state.type === 'number') {
-      value = value.replace(/[^\d]/g, '')
+      value = value.replace(/[^\d]/g, '');
     }
 
+    let fullValue = value;
+
     if (value !== '') {
-      const input = this.state.input.slice()
-      input[target] = value
-      value = input.join('')
+      const input = this.state.input.slice();
 
       if (value.length > 1) {
-        value.split('').map((s, i) => {
-          if (this.textInput[i]) {
-            this.textInput[i].value = s
+        value.split('').map((chart, i) => {
+          if (Number(e.target.id) + i < this.props.fields) {
+            input[Number(e.target.id) + i] = chart;
           }
-          return false
-        })
+          return false;
+        });
+      } else {
+        input[Number(e.target.id)] = value;
       }
-      const newTarget = this.textInput[input.length === value.length ? value.length - 1 : value.length]
+
+      input.map((s, i) => {
+        if (this.textInput[i]) {
+          this.textInput[i].value = s;
+        }
+        return false;
+      });
+
+      const newTarget = this.textInput[e.target.id < input.length ? Number(e.target.id) + 1 : e.target.id]
 
       if (newTarget) {
         newTarget.focus()
         newTarget.select()
       }
 
-      this.setState({ value, input })
+      fullValue = input.join('');
+
+      this.setState({ value: input.join(''), input });
     }
+
     if ('onChange' in this.props) {
-      if (value) {
-        this.props.onChange(value)
+      if (fullValue) {
+        this.props.onChange(fullValue);
       }
     }
-    this.handleTouch(value)
+    this.handleTouch(fullValue);
   }
 
-  onKeyDown(e) {
+  handleKeyDown(e) {
     const target = Number(e.target.id),
           nextTarget = this.textInput[target + 1],
           prevTarget = this.textInput[target - 1]
-    let input, value
+    let input, value;
 
     switch (e.keyCode) {
       case BACKSPACE_KEY:
@@ -205,31 +217,31 @@ class ReactCodeInput extends Component {
 
     return (
       <div className={classNames(className, 'react-code-input')} style={styles.container}>
-       {input.map((value, i) => {
-         return (
-           <input
-             ref={(ref) => {
+        {this.state.input.map((value, i) => {
+          return (
+            <input
+              ref={(ref) => {
                this.textInput[i] = ref
-             }}
-             id={i}
-             autoFocus={(i === 0) ? 'autoFocus' : ''}
-             defaultValue={value}
-             key={`input_${i}`}
-             type={type}
-             min={0}
-             max={9}
-             maxLength={input.length === i + 1 ? 1 : input.length}
-             style={styles.input}
-             autoComplete="off"
-             onFocus={(e) => e.target.select(e)}
-             onBlur={(e) => this.handleBlur(e)}
-             onChange={(e) => this.handleChange(e)}
-             onKeyDown={(e) => this.onKeyDown(e)}
-             disabled={disabled}
-             data-valid={isValid}
+              }}
+              id={i}
+              autoFocus={(i === 0) ? 'autoFocus' : ''}
+              defaultValue={value}
+              key={`input_${i}`}
+              type={type}
+              min={0}
+              max={9}
+              maxLength={input.length === i + 1 ? 1 : input.length}
+              style={styles.input}
+              autoComplete="off"
+              onFocus={(e) => e.target.select(e)}
+              onBlur={(e) => this.handleBlur(e)}
+              onChange={(e) => this.handleChange(e)}
+              onKeyDown={(e) => this.handleKeyDown(e)}
+              disabled={disabled}
+              data-valid={isValid}
             />
-         )
-       })}
+          )
+        })}
       </div>
     )
   }
@@ -240,8 +252,9 @@ ReactCodeInput.defaultProps = {
   disabled: false,
   fields: 4,
   value: '',
-  type: 'text'
-}
+  type: 'text',
+};
+
 ReactCodeInput.propTypes = {
   options: PropTypes.object,
   type: PropTypes.oneOf(['text', 'number', 'password', 'tel']),
@@ -256,7 +269,7 @@ ReactCodeInput.propTypes = {
   disabled: PropTypes.bool,
   style: PropTypes.object,
   inputStyle: PropTypes.object,
-  inputStyleInvalid: PropTypes.object
-}
+  inputStyleInvalid: PropTypes.object,
+};
 
-export default ReactCodeInput
+export default ReactCodeInput;
