@@ -43,7 +43,13 @@ module.exports = [
                 {
                     test:    /\.js$/,
                     exclude: /node_modules/,
-                    use:     ['babel-loader'],
+                    use:     {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: true,
+                            plugins: ['react-hot-loader/babel'],
+                        },
+                    },
                 },
                 {
                     test: /\.json$/,

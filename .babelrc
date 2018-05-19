@@ -7,7 +7,7 @@
   "compact": true,
   "env": {
     "test": {
-      "plugins": ["istanbul"]
+      "plugins": ["istanbul", "react-hot-loader/babel"]
     }
   }
 }
