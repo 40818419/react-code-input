@@ -165,7 +165,7 @@ class ReactCodeInput extends Component {
   }
 
   render() {
-    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type } = this.props,
+    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus } = this.props,
           { disabled, input, isValid, defaultInputStyle } = this.state,
           styles = {
             container: style,
@@ -212,7 +212,7 @@ class ReactCodeInput extends Component {
                this.textInput[i] = ref
              }}
              id={i}
-             autoFocus={(i === 0) ? 'autoFocus' : ''}
+             autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
              defaultValue={value}
              key={`input_${i}`}
              type={type}
@@ -236,6 +236,7 @@ class ReactCodeInput extends Component {
 }
 
 ReactCodeInput.defaultProps = {
+  autoFocus: true,
   isValid: true,
   disabled: false,
   fields: 4,
@@ -254,6 +255,7 @@ ReactCodeInput.propTypes = {
   className: PropTypes.string,
   isValid: PropTypes.bool,
   disabled: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   style: PropTypes.object,
   inputStyle: PropTypes.object,
   inputStyleInvalid: PropTypes.object
