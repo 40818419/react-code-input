@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
+import classNames           from 'classnames';
 
-const BACKSPACE_KEY = 8
-const LEFT_ARROW_KEY = 37
-const UP_ARROW_KEY = 38
-const RIGHT_ARROW_KEY = 39
-const DOWN_ARROW_KEY = 40
+const BACKSPACE_KEY = 8;
+const LEFT_ARROW_KEY = 37;
+const UP_ARROW_KEY = 38;
+const RIGHT_ARROW_KEY = 39;
+const DOWN_ARROW_KEY = 40;
 
 class ReactCodeInput extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    const { value, fields, type, isValid, disabled } = props
+    const { value, fields, type, isValid, disabled } = props;
 
     this.state = {
       value,
@@ -35,35 +35,37 @@ class ReactCodeInput extends Component {
         boxSizing: 'border-box'
       }
     }
+
     for (let i = 0; i < Number(this.state.fields); i += 1) {
       if (i < 32) {
         const value = this.state.value[i] || ''
         this.state.input.push(value)
       }
     }
-    this.textInput = []
+
+    this.textInput = [];
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      isValid: nextProps.isValid,
-      value: nextProps.value,
-      disabled: nextProps.disabled
-    })
+      isValid:  nextProps.isValid,
+      value:    nextProps.value,
+      disabled: nextProps.disabled,
+    });
   }
 
   handleBlur(e) {
-    this.handleTouch(e.target.value)
+    this.handleTouch(e.target.value);
   }
 
   handleTouch(value) {
-    const { touch, untouch, name } = this.props
+    const { touch, untouch, name } = this.props;
 
     if (typeof touch === 'function' && typeof untouch === 'function') {
       if (value === '') {
-        touch(name)
+        touch(name);
       } else {
-        untouch(name)
+        untouch(name);
       }
     }
   }
@@ -101,8 +103,8 @@ class ReactCodeInput extends Component {
       const newTarget = this.textInput[e.target.id < input.length ? Number(e.target.id) + 1 : e.target.id]
 
       if (newTarget) {
-        newTarget.focus()
-        newTarget.select()
+        newTarget.focus();
+        newTarget.select();
       }
 
       fullValue = input.join('');
@@ -110,121 +112,122 @@ class ReactCodeInput extends Component {
       this.setState({ value: input.join(''), input });
     }
 
-    if ('onChange' in this.props) {
-      if (fullValue) {
-        this.props.onChange(fullValue);
-      }
+    if (this.props.onChange && fullValue) {
+      this.props.onChange(fullValue);
     }
+
     this.handleTouch(fullValue);
   }
 
   handleKeyDown(e) {
     const target = Number(e.target.id),
           nextTarget = this.textInput[target + 1],
-          prevTarget = this.textInput[target - 1]
+          prevTarget = this.textInput[target - 1];
+
     let input, value;
 
     switch (e.keyCode) {
       case BACKSPACE_KEY:
-        e.preventDefault()
-        this.textInput[target].value = ''
-        input = this.state.input.slice()
-        input[target] = ''
-        value = input.join('')
+        e.preventDefault();
+        this.textInput[target].value = '';
+        input = this.state.input.slice();
+        input[target] = '';
+        value = input.join('');
 
-        this.setState({ value, input })
+        this.setState({ value, input });
         if (this.textInput[target].value === '') {
           if (prevTarget) {
-            prevTarget.focus()
-            prevTarget.select()
+            prevTarget.focus();
+            prevTarget.select();
           }
         }
-        break
+        break;
 
       case LEFT_ARROW_KEY:
-        e.preventDefault()
+        e.preventDefault();
         if (prevTarget) {
-          prevTarget.focus()
-          prevTarget.select()
+          prevTarget.focus();
+          prevTarget.select();
         }
-        break
+        break;
 
       case RIGHT_ARROW_KEY:
-        e.preventDefault()
+        e.preventDefault();
         if (nextTarget) {
-          nextTarget.focus()
-          nextTarget.select()
+          nextTarget.focus();
+          nextTarget.select();
         }
-        break
+        break;
 
       case UP_ARROW_KEY:
-        e.preventDefault()
-        break
+        e.preventDefault();
+        break;
 
       case DOWN_ARROW_KEY:
-        e.preventDefault()
-        break
+        e.preventDefault();
+        break;
 
       default:
-        break
+        break;
     }
-    if ('onChange' in this.props) {
-      if (value) {
-        this.props.onChange(value)
-      }
+
+
+    if (this.props.onChange && value) {
+      this.props.onChange(value);
     }
-    this.handleTouch(value)
+
+    this.handleTouch(value);
   }
 
   render() {
-    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type } = this.props,
-          { disabled, input, isValid, defaultInputStyle } = this.state,
-          styles = {
-            container: style,
-            input: isValid ? inputStyle : inputStyleInvalid
-          }
+    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus } = this.props,
+    { disabled, input, isValid, defaultInputStyle } = this.state,
+    styles = {
+      container: style,
+      input:     isValid ? inputStyle : inputStyleInvalid,
+    };
 
     Object.assign(styles.container, {
-        display: 'inline-block'
-    })
+      display: 'inline-block',
+    });
 
     if (!className && Object.keys(inputStyle).length === 0) {
       Object.assign(inputStyle, {
         ...defaultInputStyle,
-        color: 'black',
+        color:           'black',
         backgroundColor: 'white',
-        borderColor: 'lightgrey'
-      })
+        borderColor:     'lightgrey',
+      });
     }
 
     if (!className && Object.keys(inputStyleInvalid).length === 0) {
       Object.assign(inputStyleInvalid, {
         ...defaultInputStyle,
-        color: '#b94a48',
+        color:           '#b94a48',
         backgroundColor: '#f2dede',
-        borderColor: '#eed3d7'
-      })
+        borderColor:     '#eed3d7',
+      });
     }
 
     if (disabled) {
       Object.assign(styles.input, {
-        cursor: 'not-allowed',
-        color: 'lightgrey',
-        borderColor: 'lightgrey',
-        backgroundColor: '#efeff1'
-      })
+        cursor:          'not-allowed',
+        color:           'lightgrey',
+        borderColor:     'lightgrey',
+        backgroundColor: '#efeff1',
+      });
     }
 
     return (
       <div className={classNames(className, 'react-code-input')} style={styles.container}>
-        {this.state.input.map((value, i) => {
+        {input.map((value, i) => {
           return (
             <input
               ref={(ref) => {
-               this.textInput[i] = ref
+                this.textInput[i] = ref;
               }}
               id={i}
-              autoFocus={(i === 0) ? 'autoFocus' : ''}
+              autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
               defaultValue={value}
               key={`input_${i}`}
               type={type}
@@ -248,6 +251,7 @@ class ReactCodeInput extends Component {
 }
 
 ReactCodeInput.defaultProps = {
+  autoFocus: true,
   isValid: true,
   disabled: false,
   fields: 4,
@@ -270,6 +274,7 @@ ReactCodeInput.propTypes = {
   style: PropTypes.object,
   inputStyle: PropTypes.object,
   inputStyleInvalid: PropTypes.object,
+  autoFocus: PropTypes.bool,
 };
 
 export default ReactCodeInput;
