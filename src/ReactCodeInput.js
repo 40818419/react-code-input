@@ -34,11 +34,11 @@ class ReactCodeInput extends Component {
         fontSize: '32px',
         boxSizing: 'border-box'
       }
-    }
+    };
 
     for (let i = 0; i < Number(this.state.fields); i += 1) {
       if (i < 32) {
-        const value = this.state.value[i] || ''
+        const value = this.state.value[i] || '';
         this.state.input.push(value)
       }
     }
@@ -100,7 +100,7 @@ class ReactCodeInput extends Component {
         return false;
       });
 
-      const newTarget = this.textInput[e.target.id < input.length ? Number(e.target.id) + 1 : e.target.id]
+      const newTarget = this.textInput[e.target.id < input.length ? Number(e.target.id) + 1 : e.target.id];
 
       if (newTarget) {
         newTarget.focus();
@@ -170,7 +170,6 @@ class ReactCodeInput extends Component {
       default:
         break;
     }
-
 
     if (this.props.onChange && value) {
       this.props.onChange(value);
@@ -243,7 +242,7 @@ class ReactCodeInput extends Component {
               disabled={disabled}
               data-valid={isValid}
             />
-          )
+          );
         })}
       </div>
     )
