@@ -14,12 +14,12 @@ const numbers = '123456',
     chars = '123FE3';
 
 describe('CodeInputField', () => {
-    it(`renders without error`, (done) => {
+    it('renders without error', (done) => {
         shallow(<CodeInputField />);
         done();
     });
 
-    it(`renders field without any values`, () => {
+    it('renders field without any values', () => {
         const wrapper = shallow(<CodeInputField />);
         expect(wrapper.find('input')).to.have.length(4);
         expect(wrapper.state().fields).to.equal(4);
@@ -50,17 +50,17 @@ describe('CodeInputField', () => {
         expect(val.join('')).to.be.an('string');
     });
 
-    it(`mount component with props: "fields={6}"`, () => {
+    it('mount component with props: "fields={6}"', () => {
         const wrapper = mount(<CodeInputField fields={6} />);
         expect(wrapper.props().fields).to.eql(6);
     });
 
-    it(`should have 4 input felds`, () => {
+    it('should have 4 input felds', () => {
         const wrapper = shallow(<CodeInputField />);
         expect(wrapper.find('input')).to.have.length(4);
     });
 
-    it(`simulates onChange events`, () => {
+    it('simulates onChange events', () => {
         const onChange = sinon.spy();
         const wrapper = mount(<CodeInputField onChange={onChange} fields={3} value="123" type="number" />);
         const element = wrapper.find('input').at(0);
@@ -71,7 +71,7 @@ describe('CodeInputField', () => {
         expect(wrapper.state().value).to.equal('23');
     });
 
-    it(`simulates onChange from paste type=text`, () => {
+    it('simulates onChange from paste type=text', () => {
         const onChange = sinon.spy();
         const wrapper = mount(<CodeInputField onChange={onChange} fields={6} type="text" />);
         const element = wrapper.find('input').at(0);
@@ -81,7 +81,7 @@ describe('CodeInputField', () => {
         expect(wrapper.state().value).to.equal(chars);
     });
 
-    it(`simulates onChange from paste type=number`, () => {
+    it('simulates onChange from paste type=number', () => {
         const onChange = sinon.spy();
         const wrapper = mount(<CodeInputField onChange={onChange} fields={6} type="number" />);
         const element = wrapper.find('input').at(0);
@@ -91,7 +91,7 @@ describe('CodeInputField', () => {
         expect(wrapper.state().value).to.equal(numbers);
     });
 
-    it(`mount component with type="number" but string provided`, () => {
+    it('mount component with type="number" but string provided', () => {
         const onChange = sinon.spy();
         const wrapper = mount(<CodeInputField onChange={onChange} fields={3} value="a23" type="number" />);
         const element = wrapper.find('input').at(0);
@@ -99,7 +99,7 @@ describe('CodeInputField', () => {
         expect(wrapper.state().value).to.equal('a23');
     });
 
-    it(`simulates focus and blur`, () => {
+    it('simulates focus and blur', () => {
         const wrapper = mount(<CodeInputField fields={4} value="1234" />);
         const element = wrapper.find('input').at(0);
         element.simulate('focus');
@@ -107,18 +107,17 @@ describe('CodeInputField', () => {
         expect(element.instance()).to.be.eql(document.activeElement);
     });
 
-    it(`focuses next on right arrow key press`, () => {
+    it('focuses next on right arrow key press', () => {
         const wrapper = mount(<CodeInputField fields={4} value="abc" />);
         const element = wrapper.find('input').at(1);
         element.simulate('keydown', { keyCode: 39 });
         expect(wrapper.find('input').at(2).instance()).to.be.eql(document.activeElement);
     });
 
-    it(`focuses previous on left arrow key press`, () => {
+    it('focuses previous on left arrow key press', () => {
         const wrapper = mount(<CodeInputField fields={4} value="ab" />);
         const element = wrapper.find('input').at(2);
         element.simulate('keydown', { keyCode: 37 });
         expect(wrapper.find('input').at(1).instance()).to.be.eql(document.activeElement);
     });
-
 });
