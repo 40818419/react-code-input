@@ -82,6 +82,7 @@
     "sinon": "^5.0.7",
     "style-loader": "^0.21.0",
     "tapable": "^1.0.0",
+    "uri-js": "^4.2.2",
     "watchpack": "^1.6.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3"
