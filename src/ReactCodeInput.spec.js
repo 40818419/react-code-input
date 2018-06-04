@@ -159,6 +159,6 @@ describe('CodeInputField', () => {
             color: "black"
         };
         const wrapper = mount(<CodeInputField fields={4} value="123" type="number" inputStyle={inputStyle} />);
-        expect(wrapper.props().inputStyleInvalid.color).toBe("black");
+        expect(wrapper.props().inputStyle.color).toBe("black");
     });
 });
