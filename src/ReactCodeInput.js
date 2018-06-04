@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 import classNames           from 'classnames';
+import { uuidv4 }           from './utils';
 
 const BACKSPACE_KEY = 8;
 const LEFT_ARROW_KEY = 37;
@@ -44,6 +45,8 @@ class ReactCodeInput extends Component {
     }
 
     this.textInput = [];
+
+    this.uuid = uuidv4();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -84,13 +87,13 @@ class ReactCodeInput extends Component {
 
       if (value.length > 1) {
         value.split('').map((chart, i) => {
-          if (Number(e.target.id) + i < this.props.fields) {
-            input[Number(e.target.id) + i] = chart;
+          if (Number(e.target.dataset.id) + i < this.props.fields) {
+            input[Number(e.target.dataset.id) + i] = chart;
           }
           return false;
         });
       } else {
-        input[Number(e.target.id)] = value;
+        input[Number(e.target.dataset.id)] = value;
       }
 
       input.map((s, i) => {
@@ -100,7 +103,7 @@ class ReactCodeInput extends Component {
         return false;
       });
 
-      const newTarget = this.textInput[e.target.id < input.length ? Number(e.target.id) + 1 : e.target.id];
+      const newTarget = this.textInput[e.target.dataset.id < input.length ? Number(e.target.dataset.id) + 1 : e.target.dataset.id];
 
       if (newTarget) {
         newTarget.focus();
@@ -120,7 +123,7 @@ class ReactCodeInput extends Component {
   }
 
   handleKeyDown(e) {
-    const target = Number(e.target.id),
+    const target = Number(e.target.dataset.id),
           nextTarget = this.textInput[target + 1],
           prevTarget = this.textInput[target - 1];
 
@@ -225,7 +228,8 @@ class ReactCodeInput extends Component {
               ref={(ref) => {
                 this.textInput[i] = ref;
               }}
-              id={i}
+              id={`${this.uuid}-${i}`}
+              data-id={i}
               autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
               defaultValue={value}
               key={`input_${i}`}
