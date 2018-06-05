@@ -53,6 +53,6 @@ workflows:
       - test-unit:
           requires:
             - build
-      - test-e2e:
+      - test-codecov:
           requires:
             - build
