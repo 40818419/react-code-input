@@ -3,55 +3,38 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-
-defaults: &defaults
-  working_directory: ~/project/react-code-input
-  docker:
-    - image: circleci/node:8-browsers
-
 jobs:
   build:
-    <<: *defaults
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
     steps:
       - checkout
-      #- restore_cache:
-      #    keys:
-      #      - v1-vue-{{ .Branch }}-{{ checksum "package-lock.json" }}
-      #      - v1-vue-{{ .Branch }}-
-      #      - v1-vue-
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
       - run: npm install
+
       - save_cache:
-          key: v1-vue-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
-            - node_modules/
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - vue-router
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
 
-  test-unit:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - run: npm run test:coverage
-
-  test-codecov:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/project
-      # add codecov
-      - run: CODECOV_TOKEN=444a47a4-b0fb-4cf1-8105-19a403cb7bbd npm run codecov
-
-workflows:
-  version: 2
-  build-and-parallel-test:
-    jobs:
-      - build
-      - test-unit:
-          requires:
-            - build
-      - test-codecov:
-          requires:
-            - build
+      # run tests!
+      - run:
+          name: test
+          command: npm test:coverage
+      - run:
+          name: codecov
+          command: CODECOV_TOKEN=444a47a4-b0fb-4cf1-8105-19a403cb7bbd npm run codecov
