@@ -3,12 +3,15 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+
+defaults: &defaults
+  docker:
+    # specify the version you desire here
+    - image: circleci/node:7.10
+
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
-
+    <<: *defaults
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -31,6 +34,25 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
+  test-unit:
+    <<: *defaults
+    steps:
       - run: npm run test:coverage
+
+  test-codecov:
+    <<: *defaults
+    steps:
+      # add codecov
       - run: CODECOV_TOKEN=444a47a4-b0fb-4cf1-8105-19a403cb7bbd npm run codecov
+
+workflows:
+  version: 2
+  install-and-parallel-test:
+    jobs:
+      - build
+      - test-unit:
+          requires:
+            - build
+      - test-e2e:
+          requires:
+            - build
