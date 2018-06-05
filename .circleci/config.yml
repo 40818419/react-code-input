@@ -32,5 +32,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm test
-      - run: CODECOV_TOKEN=444a47a4-b0fb-4cf1-8105-19a403cb7bbd npm run codecov
+      - run:
+          name: test
+          command: npm run test:coverage
+      - run:
+          name: codecov
+          command: CODECOV_TOKEN=444a47a4-b0fb-4cf1-8105-19a403cb7bbd npm run codecov

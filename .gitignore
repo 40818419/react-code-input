@@ -8,3 +8,4 @@ coverage
 .tmp
 componentsIndex.js
 .idea
+.DS_Store
