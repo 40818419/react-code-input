@@ -7,17 +7,11 @@ version: 2
 defaults: &defaults
   working_directory: ~/project/react-code-input
   docker:
-    # specify the version you desire here
-    - image: circleci/node:7.10
+    - image: circleci/node:8-browsers
 
 jobs:
   build:
     <<: *defaults
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
     steps:
       - checkout
       - restore_cache:
@@ -52,7 +46,7 @@ jobs:
 
 workflows:
   version: 2
-  install-and-parallel-test:
+  build-and-parallel-test:
     jobs:
       - build
       - test-unit:
