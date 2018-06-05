@@ -33,8 +33,9 @@ jobs:
 
       # run tests!
       - run:
-          name: test
+          name: Test
           command: npm run test:coverage
       - run:
-          name: codecov
-          command: CODECOV_TOKEN=444a47a4-b0fb-4cf1-8105-19a403cb7bbd npm run codecov
+          name: Codecov
+          command: CODECOV_TOKEN=${CODECOV_TOKEN} npm run codecov
+          when: always
