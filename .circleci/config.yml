@@ -38,3 +38,4 @@ jobs:
       - run:
           name: codecov
           command: CODECOV_TOKEN=444a47a4-b0fb-4cf1-8105-19a403cb7bbd npm run codecov
+          when: always
