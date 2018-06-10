@@ -8,7 +8,10 @@
     "build": "gulp bluekit:build && webpack && cd styles && sass style.scss style.css",
     "test": "cross-env NODE_ENV=test jest --silent",
     "test:coverage": "cross-env NODE_ENV=test jest --silent --coverage",
-    "codecov": "codecov -f ./coverage/*.json"
+    "codecov": "codecov -f ./coverage/*.json",
+    "release:major": "changelog -M && git add . && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
+    "release:minor": "changelog -m && git add . && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
+    "release:patch": "changelog -p && git add . && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags"
   },
   "jest": {
     "verbose": true,
@@ -26,10 +29,10 @@
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "coverageThreshold": {
       "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
       }
     },
     "coveragePathIgnorePatterns": [
@@ -85,6 +88,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-plugin-react": "^7.8.2",
     "extract-text-webpack-plugin": "^3.0.2",
+    "generate-changelog": "^1.7.1",
     "jest": "^23.1.0",
     "jsdom": "^11.10.0",
     "jsdom-global": "^3.0.2",
@@ -103,7 +107,8 @@
     "uri-js": "^4.2.2",
     "watchpack": "^1.6.0",
     "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.3"
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
   },
   "peerDependencies": {
     "react": "^15.5.4 || ^16.2.0",
