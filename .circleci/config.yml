@@ -1,41 +1,111 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
-    docker:
-      # specify the version you desire here
+    docker: &docker_image
       - image: circleci/node:7.10
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
 
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: npm install
+      - run:
+          name: Test
+          command: |
+            npm install
+            npm run test:coverage
+
+      - run:
+          name: Codecov
+          command: CODECOV_TOKEN=${CODECOV_TOKEN} npm run codecov
+          when: always
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
+
+  no-release:
+    docker: *docker_image
+    steps:
+      - run: exit 0
+
+  patch-release:
+    docker: *docker_image
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run:
-          name: Test
-          command: npm run test:coverage
+          name: Run patch release
+          command: |
+            npm install
+            npm run release:patch
+      - save_cache:
+          key: npm-deps-v1{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+  minor-release:
+    docker: *docker_image
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run:
-          name: Codecov
-          command: CODECOV_TOKEN=${CODECOV_TOKEN} npm run codecov
-          when: always
+          name: Run minor release
+          command: |
+            npm install
+            npm run release:minor
+      - save_cache:
+          key: npm-deps-v1{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+  major-release:
+    docker: *docker_image
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run:
+          name: Run major release
+          command: |
+            npm install
+            npm run release:major
+      - save_cache:
+          key: npm-deps-v1{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - no-release:
+          type: approval
+          requires:
+            - build
+      - patch-release:
+          type: approval
+          requires:
+            - build
+      - minor-release:
+          type: approval
+          requires:
+            - build
+      - major-release:
+          type: approval
+          requires:
+            - build
+

@@ -8,7 +8,10 @@
     "build": "gulp bluekit:build && webpack && cd styles && sass style.scss style.css",
     "test": "cross-env NODE_ENV=test jest --silent",
     "test:coverage": "cross-env NODE_ENV=test jest --silent --coverage",
-    "codecov": "codecov -f ./coverage/*.json"
+    "codecov": "codecov -f ./coverage/*.json",
+    "release:major": "changelog -M && git add . && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
+    "release:minor": "changelog -m && git add . && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
+    "release:patch": "changelog -p && git add . && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags"
   },
   "jest": {
     "verbose": true,
@@ -85,6 +88,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-plugin-react": "^7.8.2",
     "extract-text-webpack-plugin": "^3.0.2",
+    "generate-changelog": "^1.7.1",
     "jest": "^23.1.0",
     "jsdom": "^11.10.0",
     "jsdom-global": "^3.0.2",
