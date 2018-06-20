@@ -1,3 +1,9 @@
+### 3.3.0 (2018-06-20)
+
+##### New Features
+
+* **prevent-chars:**  Filter characters on key down ([#35](https://github.com/40818419/react-code-input/pull/35)) ([b6a00d90](https://github.com/40818419/react-code-input/commit/b6a00d90fdf803d319adadd0938d7fe6d53479d7))
+
 #### 3.2.1 (2018-06-11)
 
 ##### Continuous Integration
