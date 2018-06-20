@@ -161,4 +161,13 @@ describe('CodeInputField', () => {
         const wrapper = mount(<CodeInputField fields={4} value="123" type="number" inputStyle={inputStyle} />);
         expect(wrapper.props().inputStyle.color).toBe("black");
     });
+
+  test('should filter characters on key down 190', () => {
+    const wrapper = mount(<CodeInputField fields={4} value="123" type="number" />);
+    const element = wrapper.find('input').at(0);
+    element.simulate('keydown', { keyCode: 190 });
+    element.simulate('focus');
+    element.simulate('blur');
+    expect(element.instance()).toEqual(document.activeElement);
+  });
 });

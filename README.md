@@ -89,6 +89,7 @@ const props = {
 | isValid | bool | Returns true if an input element contains valid data. |
 | disabled | bool | When present, it specifies that the element should be disabled. |
 | autoFocus | bool | Setup autofocus on the first input, `true` by default. |
+| filterKeyCodes | array | Filter characters on key down. |
 
 ## Compatible with
 [`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)

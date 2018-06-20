@@ -13,34 +13,35 @@ class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
 
-    const { value, fields, type, isValid, disabled } = props;
+    const { value, fields, type, isValid, disabled, filterKeyCodes } = props;
 
     this.state = {
       value,
       fields,
       type,
-      input: [],
+      input:             [],
       isValid,
       disabled,
+      filterKeyCodes,
       defaultInputStyle: {
-        fontFamily: 'monospace',
+        fontFamily:    'monospace',
         MozAppearance: 'textfield',
-        borderRadius: '6px',
-        border: '1px solid',
-        boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
-        margin: '4px',
-        paddingLeft: '8px',
-        width: '36px',
-        height: '42px',
-        fontSize: '32px',
-        boxSizing: 'border-box'
-      }
+        borderRadius:  '6px',
+        border:        '1px solid',
+        boxShadow:     '0px 0px 10px 0px rgba(0,0,0,.10)',
+        margin:        '4px',
+        paddingLeft:   '8px',
+        width:         '36px',
+        height:        '42px',
+        fontSize:      '32px',
+        boxSizing:     'border-box',
+      },
     };
 
     for (let i = 0; i < Number(this.state.fields); i += 1) {
       if (i < 32) {
         const value = this.state.value[i] || '';
-        this.state.input.push(value)
+        this.state.input.push(value);
       }
     }
 
@@ -51,10 +52,10 @@ class ReactCodeInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      isValid:  nextProps.isValid,
-      value:    nextProps.value,
-      disabled: nextProps.disabled,
-    });
+                    isValid:  nextProps.isValid,
+                    value:    nextProps.value,
+                    disabled: nextProps.disabled,
+                  });
   }
 
   handleBlur(e) {
@@ -103,7 +104,9 @@ class ReactCodeInput extends Component {
         return false;
       });
 
-      const newTarget = this.textInput[e.target.dataset.id < input.length ? Number(e.target.dataset.id) + 1 : e.target.dataset.id];
+      const newTarget = this.textInput[e.target.dataset.id < input.length
+                                       ? Number(e.target.dataset.id) + 1
+                                       : e.target.dataset.id];
 
       if (newTarget) {
         newTarget.focus();
@@ -124,10 +127,19 @@ class ReactCodeInput extends Component {
 
   handleKeyDown(e) {
     const target = Number(e.target.dataset.id),
-          nextTarget = this.textInput[target + 1],
-          prevTarget = this.textInput[target - 1];
+      nextTarget = this.textInput[target + 1],
+      prevTarget = this.textInput[target - 1];
 
     let input, value;
+
+    if (this.state.filterKeyCodes.length > 0) {
+      this.state.filterKeyCodes.map((item) => {
+        if (item === e.keyCode) {
+          e.preventDefault();
+          return true;
+        }
+      });
+    }
 
     switch (e.keyCode) {
       case BACKSPACE_KEY:
@@ -183,11 +195,11 @@ class ReactCodeInput extends Component {
 
   render() {
     const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus } = this.props,
-    { disabled, input, isValid, defaultInputStyle } = this.state,
-    styles = {
-      container: style,
-      input:     isValid ? inputStyle : inputStyleInvalid,
-    };
+      { disabled, input, isValid, defaultInputStyle } = this.state,
+      styles = {
+        container: style,
+        input:     isValid ? inputStyle : inputStyleInvalid,
+      };
 
     Object.assign(styles.container, {
       display: 'inline-block',
@@ -249,35 +261,37 @@ class ReactCodeInput extends Component {
           );
         })}
       </div>
-    )
+    );
   }
 }
 
 ReactCodeInput.defaultProps = {
-  autoFocus: true,
-  isValid: true,
-  disabled: false,
-  fields: 4,
-  value: '',
-  type: 'text',
+  autoFocus:      true,
+  isValid:        true,
+  disabled:       false,
+  fields:         4,
+  value:          '',
+  type:           'text',
+  filterKeyCodes: [189, 190],
 };
 
 ReactCodeInput.propTypes = {
-  options: PropTypes.object,
-  type: PropTypes.oneOf(['text', 'number', 'password', 'tel']),
-  fields: PropTypes.number,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  name: PropTypes.string,
-  touch: PropTypes.func,
-  untouch: PropTypes.func,
-  className: PropTypes.string,
-  isValid: PropTypes.bool,
-  disabled: PropTypes.bool,
-  style: PropTypes.object,
-  inputStyle: PropTypes.object,
+  options:           PropTypes.object,
+  type:              PropTypes.oneOf(['text', 'number', 'password', 'tel']),
+  fields:            PropTypes.number,
+  value:             PropTypes.string,
+  onChange:          PropTypes.func,
+  name:              PropTypes.string,
+  touch:             PropTypes.func,
+  untouch:           PropTypes.func,
+  className:         PropTypes.string,
+  isValid:           PropTypes.bool,
+  disabled:          PropTypes.bool,
+  style:             PropTypes.object,
+  inputStyle:        PropTypes.object,
   inputStyleInvalid: PropTypes.object,
-  autoFocus: PropTypes.bool,
+  autoFocus:         PropTypes.bool,
+  filterKeyCodes:    PropTypes.array,
 };
 
 export default ReactCodeInput;
