@@ -90,6 +90,8 @@ const props = {
 | disabled | bool | When present, it specifies that the element should be disabled. |
 | autoFocus | bool | Setup autofocus on the first input, `true` by default. |
 | filterKeyCodes | array | Filter characters on key down. |
+| pattern | string | The pattern prop specifies a regular expression that the <input> element's value is checked against. |
+| inputMode | string | The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display. |
 
 ## Compatible with
 [`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)
