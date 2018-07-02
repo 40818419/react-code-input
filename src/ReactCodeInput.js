@@ -194,7 +194,7 @@ class ReactCodeInput extends Component {
   }
 
   render() {
-    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus } = this.props,
+    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus, pattern, inputMode } = this.props,
       { disabled, input, isValid, defaultInputStyle } = this.state,
       styles = {
         container: style,
@@ -257,6 +257,8 @@ class ReactCodeInput extends Component {
               onKeyDown={(e) => this.handleKeyDown(e)}
               disabled={disabled}
               data-valid={isValid}
+              pattern={pattern}
+              inputMode={inputMode}
             />
           );
         })}
@@ -292,6 +294,12 @@ ReactCodeInput.propTypes = {
   inputStyleInvalid: PropTypes.object,
   autoFocus:         PropTypes.bool,
   filterKeyCodes:    PropTypes.array,
+  pattern:           PropTypes.string,
+  inputMode:         PropTypes.oneOf([
+                                       'verbatim', 'latin', 'latin-name', 'latin-prose',
+                                       'full-width-latin', 'kana', 'kana-name', 'katakana',
+                                       'numeric', 'tel', 'email', 'url',
+                                     ]),
 };
 
 export default ReactCodeInput;
