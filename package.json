@@ -5,7 +5,7 @@
   "main": "lib/ReactCodeInput.js",
   "scripts": {
     "start": "gulp bluekit:build && webpack && webpack-dev-server --content-base example/",
-    "build": "gulp bluekit:build && webpack && cd styles && sass style.scss style.css",
+    "build": "gulp bluekit:build && webpack && cd styles && sass style.scss style.css && cd ../ && ./postbuild.sh",
     "test": "cross-env NODE_ENV=test jest --silent",
     "test:coverage": "cross-env NODE_ENV=test jest --silent --coverage",
     "codecov": "codecov -f ./coverage/*.json",

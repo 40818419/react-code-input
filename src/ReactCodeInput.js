@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2016 Konstantin Kulinicenko.
+ * Licensed under the MIT License (MIT), see
+ * https://github.com/40818419/react-code-input
+ */
+
 import React, { Component } from 'react';
 import PropTypes            from 'prop-types';
 import classNames           from 'classnames';
