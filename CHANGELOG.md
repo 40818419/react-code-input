@@ -8,10 +8,6 @@
 
 * **ssr:**  Fix server side rendering ([#37](https://github.com/40818419/react-code-input/pull/37)) ([630bed85](https://github.com/40818419/react-code-input/commit/630bed85be597bc74707ae2871e0a54f37f57a92))
 
-##### Bug Fixes
-
-* **ssr:**  Fix server side rendering ([#37](https://github.com/40818419/react-code-input/pull/37)) ([630bed85](https://github.com/40818419/react-code-input/commit/630bed85be597bc74707ae2871e0a54f37f57a92))
-
 ### 3.3.0 (2018-06-20)
 
 ##### New Features
