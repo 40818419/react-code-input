@@ -1,3 +1,13 @@
+### 3.5.0 (2018-07-02)
+
+##### New Features
+
+* **pattern-input-mode:**  added pattern and inputMode props ([#39](https://github.com/40818419/react-code-input/pull/39)) ([0c293463](https://github.com/40818419/react-code-input/commit/0c2934639278b83eb05dd362427bb23bf483fb66))
+
+##### Bug Fixes
+
+* **ssr:**  Fix server side rendering ([#37](https://github.com/40818419/react-code-input/pull/37)) ([630bed85](https://github.com/40818419/react-code-input/commit/630bed85be597bc74707ae2871e0a54f37f57a92))
+
 ### 3.4.0 (2018-07-02)
 
 ##### New Features
