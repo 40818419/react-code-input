@@ -286,7 +286,7 @@ ReactCodeInput.defaultProps = {
   value:          '',
   type:           'text',
   filterKeyCodes: [189, 190],
-  filterChars:    ['-', '.'].
+  filterChars:    ['-', '.'],
 };
 
 ReactCodeInput.propTypes = {

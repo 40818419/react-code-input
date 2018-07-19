@@ -90,6 +90,7 @@ const props = {
 | disabled | bool | When present, it specifies that the element should be disabled. |
 | autoFocus | bool | Setup autofocus on the first input, `true` by default. |
 | filterKeyCodes | array | Filter characters on key down. |
+| filterChars | array | Filter characters. | default: ['-', '.'] |
 | pattern | string | The pattern prop specifies a regular expression that the <input> element's value is checked against. |
 | inputMode | string | The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display. |
 
