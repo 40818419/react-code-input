@@ -81,11 +81,16 @@ class ReactCodeInput extends Component {
   }
 
   handleChange(e) {
+    const { filterChars } = this.props;
+
     let value = String(e.target.value);
 
     if (this.state.type === 'number') {
       value = value.replace(/[^\d]/g, '');
     }
+
+    /** Filter Chars */
+    value = value.split('').filter(currChar => !filterChars.includes(currChar)).join('');
 
     let fullValue = value;
 
@@ -281,6 +286,7 @@ ReactCodeInput.defaultProps = {
   value:          '',
   type:           'text',
   filterKeyCodes: [189, 190],
+  filterChars:    ['-', '.'].
 };
 
 ReactCodeInput.propTypes = {
@@ -300,6 +306,7 @@ ReactCodeInput.propTypes = {
   inputStyleInvalid: PropTypes.object,
   autoFocus:         PropTypes.bool,
   filterKeyCodes:    PropTypes.array,
+  filterChars:       PropTypes.array,
   pattern:           PropTypes.string,
   inputMode:         PropTypes.oneOf([
                                        'verbatim', 'latin', 'latin-name', 'latin-prose',
