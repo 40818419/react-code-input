@@ -32,8 +32,13 @@ const serialize = input => input.join('');
 class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
+    
+    const { fields, type, filterKeyCodes } = props;
 
     this.state = {
+      fields,
+      type,
+      filterKeyCodes,
       defaultInputStyle: {
         fontFamily:    'monospace',
         MozAppearance: 'textfield',
@@ -54,21 +59,11 @@ class ReactCodeInput extends Component {
     this.uuid = uuidv4();
   }
 
-  static getDerivedStateFromProps({
-    value,
-    fields,
-    type,
-    isValid,
-    disabled,
-    filterKeyCodes,
-  }) {
+  static getDerivedStateFromProps({ value, isValid, disabled }, { fields }) {
     return {
-      fields,
-      type,
-      input:          deserialize(value, fields),
+      input:    deserialize(value, fields),
       isValid,
       disabled,
-      filterKeyCodes,
     };
   }
 
