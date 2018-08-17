@@ -61,10 +61,9 @@ class ReactCodeInput extends Component {
     filterKeyCodes,
   }) {
     return {
-      value,
       fields,
       type,
-      input: buildInputArrayFromValue(value, fields),
+      input:          buildInputArrayFromValue(value, fields),
       isValid,
       disabled,
       filterKeyCodes,
@@ -127,8 +126,6 @@ class ReactCodeInput extends Component {
       }
 
       fullValue = input.join('');
-
-      this.setState({ value: input.join(''), input });
     }
 
     if (this.props.onChange && fullValue) {
