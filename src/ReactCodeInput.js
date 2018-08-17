@@ -250,7 +250,7 @@ class ReactCodeInput extends Component {
               id={`${this.uuid}-${i}`}
               data-id={i}
               autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
-              defaultValue={value}
+              value={value}
               key={`input_${i}`}
               type={type}
               min={0}
