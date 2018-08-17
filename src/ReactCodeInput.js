@@ -15,7 +15,7 @@ const UP_ARROW_KEY = 38;
 const RIGHT_ARROW_KEY = 39;
 const DOWN_ARROW_KEY = 40;
 
-const buildInputArrayFromValue = (value, fields) => {
+const deserialize = (value, fields) => {
   const input = [];
   for (let i = 0; i < Number(fields); i += 1) {
     if (i < 32) {
@@ -26,6 +26,8 @@ const buildInputArrayFromValue = (value, fields) => {
   
   return input;
 };
+
+const serialize = input => input.join('');
 
 class ReactCodeInput extends Component {
   constructor(props) {
@@ -63,7 +65,7 @@ class ReactCodeInput extends Component {
     return {
       fields,
       type,
-      input:          buildInputArrayFromValue(value, fields),
+      input:          deserialize(value, fields),
       isValid,
       disabled,
       filterKeyCodes,
@@ -125,7 +127,7 @@ class ReactCodeInput extends Component {
         newTarget.select();
       }
 
-      fullValue = input.join('');
+      fullValue = serialize(input);
     }
 
     if (this.props.onChange && fullValue) {
@@ -157,7 +159,7 @@ class ReactCodeInput extends Component {
         this.textInput[target].value = '';
         input = this.state.input.slice();
         input[target] = '';
-        value = input.join('');
+        value = serialize(input);
 
         this.setState({ value, input });
         if (this.textInput[target].value === '') {
