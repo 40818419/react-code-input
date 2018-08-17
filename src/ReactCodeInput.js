@@ -15,20 +15,23 @@ const UP_ARROW_KEY = 38;
 const RIGHT_ARROW_KEY = 39;
 const DOWN_ARROW_KEY = 40;
 
+const buildInputArrayFromValue = (value, fields) => {
+  const input = [];
+  for (let i = 0; i < Number(fields); i += 1) {
+    if (i < 32) {
+      const val = value[i] || '';
+      input.push(val);
+    }
+  }
+  
+  return input;
+};
+
 class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
 
-    const { value, fields, type, isValid, disabled, filterKeyCodes } = props;
-
     this.state = {
-      value,
-      fields,
-      type,
-      input:             [],
-      isValid,
-      disabled,
-      filterKeyCodes,
       defaultInputStyle: {
         fontFamily:    'monospace',
         MozAppearance: 'textfield',
@@ -44,24 +47,28 @@ class ReactCodeInput extends Component {
       },
     };
 
-    for (let i = 0; i < Number(this.state.fields); i += 1) {
-      if (i < 32) {
-        const value = this.state.value[i] || '';
-        this.state.input.push(value);
-      }
-    }
-
     this.textInput = [];
 
     this.uuid = uuidv4();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-                    isValid:  nextProps.isValid,
-                    value:    nextProps.value,
-                    disabled: nextProps.disabled,
-                  });
+  static getDerivedStateFromProps({
+    value,
+    fields,
+    type,
+    isValid,
+    disabled,
+    filterKeyCodes,
+  }) {
+    return {
+      value,
+      fields,
+      type,
+      input: buildInputArrayFromValue(value, fields),
+      isValid,
+      disabled,
+      filterKeyCodes,
+    };
   }
 
   handleBlur(e) {
