@@ -32,7 +32,7 @@ const serialize = input => input.join('');
 class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
-    
+
     const { fields, type, filterKeyCodes } = props;
 
     this.state = {
