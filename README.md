@@ -77,7 +77,7 @@ const props = {
 |:---|:---|:---|
 | type | string | Only types like: `text`, `number`, `password` and `tel` are accepted.|
 | fields | number | Allowed amount of characters to enter. |
-| value | string | Setting the initial value of code input field. |
+| value | string | Setting the value of code input field. |
 | name | string | Setting the name of component. |
 | onChange | func | Function, which is called whenever there is a change of value in the input box. |
 | touch | func | Marks the given fields as "touched" to show errors. |
