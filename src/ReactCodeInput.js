@@ -15,29 +15,19 @@ const UP_ARROW_KEY = 38;
 const RIGHT_ARROW_KEY = 39;
 const DOWN_ARROW_KEY = 40;
 
-const deserialize = (value, fields) => {
-  const input = [];
-  for (let i = 0; i < Number(fields); i += 1) {
-    if (i < 32) {
-      const val = value[i] || '';
-      input.push(val);
-    }
-  }
-  
-  return input;
-};
-
-const serialize = input => input.join('');
-
 class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
 
-    const { fields, type, filterKeyCodes } = props;
+    const { value, fields, type, isValid, disabled, filterKeyCodes } = props;
 
     this.state = {
+      value,
       fields,
       type,
+      input:             [],
+      isValid,
+      disabled,
       filterKeyCodes,
       defaultInputStyle: {
         fontFamily:    'monospace',
@@ -54,17 +44,24 @@ class ReactCodeInput extends Component {
       },
     };
 
+    for (let i = 0; i < Number(this.state.fields); i += 1) {
+      if (i < 32) {
+        const value = this.state.value[i] || '';
+        this.state.input.push(value);
+      }
+    }
+
     this.textInput = [];
 
     this.uuid = uuidv4();
   }
 
-  static getDerivedStateFromProps({ value, isValid, disabled }, { fields }) {
-    return {
-      input:    deserialize(value, fields),
-      isValid,
-      disabled,
-    };
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+                    isValid:  nextProps.isValid,
+                    value:    nextProps.value,
+                    disabled: nextProps.disabled,
+                  });
   }
 
   handleBlur(e) {
@@ -122,7 +119,9 @@ class ReactCodeInput extends Component {
         newTarget.select();
       }
 
-      fullValue = serialize(input);
+      fullValue = input.join('');
+
+      this.setState({ value: input.join(''), input });
     }
 
     if (this.props.onChange && fullValue) {
@@ -154,7 +153,7 @@ class ReactCodeInput extends Component {
         this.textInput[target].value = '';
         input = this.state.input.slice();
         input[target] = '';
-        value = serialize(input);
+        value = input.join('');
 
         this.setState({ value, input });
         if (this.textInput[target].value === '') {
@@ -250,7 +249,7 @@ class ReactCodeInput extends Component {
               id={`${this.uuid}-${i}`}
               data-id={i}
               autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
-              value={value}
+              defaultValue={value}
               key={`input_${i}`}
               type={type}
               min={0}
