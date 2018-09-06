@@ -19,7 +19,12 @@ class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
 
-    const { value, fields, type, isValid, disabled, filterKeyCodes } = props;
+    const { fields, type, isValid, disabled, filterKeyCodes, forceUppercase } = props;
+    let { value } = props;
+
+    if (forceUppercase) {
+      value = value.toUpperCase();
+    }
 
     this.state = {
       value,
@@ -84,6 +89,10 @@ class ReactCodeInput extends Component {
     const { filterChars } = this.props;
 
     let value = String(e.target.value);
+
+    if (this.props.forceUppercase) {
+      value = value.toUpperCase();
+    }
 
     if (this.state.type === 'number') {
       value = value.replace(/[^\d]/g, '');
@@ -282,6 +291,7 @@ ReactCodeInput.defaultProps = {
   autoFocus:      true,
   isValid:        true,
   disabled:       false,
+  forceUppercase: false,
   fields:         4,
   value:          '',
   type:           'text',
@@ -305,6 +315,7 @@ ReactCodeInput.propTypes = {
   inputStyle:        PropTypes.object,
   inputStyleInvalid: PropTypes.object,
   autoFocus:         PropTypes.bool,
+  forceUppercase:    PropTypes.bool,
   filterKeyCodes:    PropTypes.array,
   filterChars:       PropTypes.array,
   pattern:           PropTypes.string,
