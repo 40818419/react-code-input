@@ -19,7 +19,12 @@ class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
 
-    const { value, fields, type, isValid, disabled, filterKeyCodes } = props;
+    const { fields, type, isValid, disabled, filterKeyCodes, forceUppercase } = props;
+    let { value } = props;
+
+    if (forceUppercase) {
+      value = value.toUpperCase();
+    }
 
     this.state = {
       value,
