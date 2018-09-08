@@ -300,7 +300,6 @@ ReactCodeInput.defaultProps = {
 };
 
 ReactCodeInput.propTypes = {
-  options:           PropTypes.object,
   type:              PropTypes.oneOf(['text', 'number', 'password', 'tel']),
   fields:            PropTypes.number,
   value:             PropTypes.string,
