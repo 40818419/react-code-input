@@ -2,16 +2,18 @@
   "name": "react-code-input",
   "version": "3.6.0",
   "description": "React component for entering and validating numbers, text or password.",
-  "main": "lib/ReactCodeInput.js",
+  "main": "dist/ReactCodeInput.js",
   "scripts": {
-    "start": "gulp bluekit:build && webpack && webpack-dev-server --content-base example/",
-    "build": "gulp bluekit:build && webpack && cd styles && sass style.scss style.css && cd ../ && ./postbuild.sh",
+    "start": "npm run storybook",
+    "build": "build-storybook && webpack && cd styles && sass style.scss style.css && cd ../ && ./postbuild.sh",
     "test": "cross-env NODE_ENV=test jest --silent",
     "test:coverage": "cross-env NODE_ENV=test jest --silent --coverage",
     "codecov": "codecov -f ./coverage/*.json",
     "release:major": "changelog -M && git add . && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
     "release:minor": "changelog -m && git add . && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
-    "release:patch": "changelog -p && git add . && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags"
+    "release:patch": "changelog -p && git add . && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook -o docs"
   },
   "jest": {
     "verbose": true,
@@ -69,6 +71,11 @@
     "react-dom": "^16.3.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "4.0.0-alpha.20",
+    "@storybook/addon-info": "^3.4.10",
+    "@storybook/addon-knobs": "^3.4.10",
+    "@storybook/addons": "4.0.0-alpha.20",
+    "@storybook/react": "^4.0.0-alpha.20",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",

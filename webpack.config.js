@@ -6,7 +6,7 @@ module.exports = [
         devtool:   'source-map',
         mode:      'production',
         output:    {
-            path:          path.resolve(__dirname, 'lib'),
+            path:          path.resolve(__dirname, 'dist'),
             filename:      'ReactCodeInput.js',
             libraryTarget: 'umd',
             library:       'ReactCodeInput',
@@ -31,43 +31,5 @@ module.exports = [
         externals: {
             react: 'react',
         },
-    },
-    {
-        output:  {
-            path:     path.resolve(__dirname, 'example/dist'),
-            filename: 'example.js',
-        },
-        mode:    'development',
-        module:  {
-            rules: [
-                {
-                    test:    /\.js$/,
-                    exclude: /node_modules/,
-                    use:     {
-                        loader: 'babel-loader',
-                        options: {
-                            babelrc: true,
-                            plugins: ['react-hot-loader/babel'],
-                        },
-                    },
-                },
-                {
-                    test: /\.json$/,
-                    use:  'json-loader',
-                },
-                {
-                    test: /\.css$/,
-                    use:  ['css', 'sass'],
-                },
-            ],
-        },
-        entry:   [
-            'babel-polyfill',
-            './example/example.js',
-        ],
-        stats:   {
-            colors: true,
-        },
-        devtool: 'source-map',
-    },
+    }
 ];
