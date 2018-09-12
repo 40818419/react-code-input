@@ -5,7 +5,7 @@
   "main": "dist/ReactCodeInput.js",
   "scripts": {
     "start": "npm run storybook",
-    "build": "build-storybook -o docs && webpack && cd styles && sass style.scss style.css && cd ../ && ./postbuild.sh",
+    "build": "rm -r docs && mkdir docs && build-storybook -o docs && webpack && cd styles && sass style.scss style.css && cd ../ && ./postbuild.sh",
     "test": "cross-env NODE_ENV=test jest --silent",
     "test:coverage": "cross-env NODE_ENV=test jest --silent --coverage",
     "codecov": "codecov -f ./coverage/*.json",
