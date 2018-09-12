@@ -8,13 +8,7 @@ import { withInfo }                                         from '@storybook/add
 import ReactCodeInput from './ReactCodeInput.js';
 
 const stories = storiesOf('ReactCodeInput', module);
-stories.addDecorator((story, context) => withInfo('Details')(story)(context));
-stories.addDecorator(withKnobs);
-stories.add('Default', () => <ReactCodeInput />);
-
 const propVariantStories = storiesOf('ReactCodeInput/Props', module);
-propVariantStories.addDecorator((story, context) => withInfo('Details')(story)(context));
-propVariantStories.addDecorator(withKnobs);
 
 const typeLabel = 'Type';
 const typeOptions = ['text', 'number', 'password', 'tel'];
@@ -44,19 +38,76 @@ const inputStyle = {
   borderColor:     'lightgrey',
 };
 
-propVariantStories.add('type', () => <ReactCodeInput
-  type={select(typeLabel, typeOptions, typeDefaultValue, typeGroupId)} />)
-                  .add('fields', () => <ReactCodeInput fields={number('fields', 6)} />)
-                  .add('inputStyle', () => <ReactCodeInput inputStyle={object('inputStyle', inputStyle)} />)
-                  .add('value', () => <ReactCodeInput value={text('value', '1234')} />)
-                  .add('isValid', () => <ReactCodeInput isValid={boolean('isValid', false)} />)
-                  .add('inputMode', () => <ReactCodeInput inputMode={select('inputMode', inputModeOptions)} />)
-                  .add('onChange', () => <ReactCodeInput onChange={action('onChange')} />)
-                  .add('pattern', () => <form><ReactCodeInput value={text('value', '123')}
-                                                              pattern={text('pattern', '[A-Z]')} /><input
-                    style={{ ...inputStyle, width: 'auto', backgroundColor: 'lightgray' }} type="submit"
-                    value="Submit" /></form>)
-                  .add('touch', () => <ReactCodeInput touch={action('touch')} />)
-                  .add('untouch', () => <ReactCodeInput untouch={action('untouch')} />)
-                  .add('disabled', () => <ReactCodeInput disabled={boolean('disabled', true)} />);
+const darkStyle = {
+  fontFamily:      'monospace',
+  MozAppearance:   'textfield',
+  borderRadius:    '3px',
+  border:          '1px solid',
+  margin:          '4px',
+  paddingLeft:     '7px',
+  width:           '15px',
+  height:          '26px',
+  fontSize:        '14px',
+  color:           'lightskyblue',
+  backgroundColor: 'black',
+  borderColor:     'lightskyblue',
+};
 
+// Creation of Stories
+stories.addDecorator((story, context) => withInfo('Details')(story)(context));
+stories.addDecorator(withKnobs);
+
+// Stories for Input Field
+stories
+  .add(
+    'Default', () =>
+      <ReactCodeInput />
+  )
+  .add(
+    'Dark Themed', () =>
+      <div style={{ background: '#222', padding: '10px', width: '140px' }}>
+        <ReactCodeInput inputStyle={darkStyle} type='number' />
+      </div>
+  );
+
+// Creation of Props
+propVariantStories.addDecorator((story, context) => withInfo('Details')(story)(context));
+propVariantStories.addDecorator(withKnobs);
+
+propVariantStories
+  .add('type', () =>
+    <ReactCodeInput type={select(typeLabel, typeOptions, typeDefaultValue, typeGroupId)} />
+  )
+  .add('fields', () =>
+    <ReactCodeInput fields={number('fields', 6)} />
+  )
+  .add('inputStyle', () =>
+    <ReactCodeInput inputStyle={object('inputStyle', inputStyle)} />
+  )
+  .add('value', () =>
+    <ReactCodeInput value={text('value', '1234')} />
+  )
+  .add('isValid', () =>
+    <ReactCodeInput isValid={boolean('isValid', false)} />
+  )
+  .add('inputMode', () =>
+    <ReactCodeInput inputMode={select('inputMode', inputModeOptions)} />
+  )
+  .add('onChange', () =>
+    <ReactCodeInput onChange={action('onChange')} />
+  )
+  .add('pattern', () =>
+    <form>
+      <ReactCodeInput value={text('value', '123')} pattern={text('pattern', '[A-Z]')} />
+        <input style={{ ...inputStyle, width: 'auto', backgroundColor: 'lightgray' }} type="submit" value="Submit" />
+    </form>
+  )
+  .add('touch', () =>
+    <ReactCodeInput touch={action('touch')} />
+  )
+  .add('untouch', () =>
+    <ReactCodeInput untouch={action('untouch')} />
+  )
+  .add('disabled', () =>
+    <ReactCodeInput disabled={boolean('disabled', true)} />
+  );
