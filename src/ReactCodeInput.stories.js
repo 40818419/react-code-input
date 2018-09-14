@@ -72,7 +72,7 @@ stories
   )
   .add(
     'Force Uppercase', () =>
-      <CodeInputField fields={4} type="text" forceUppercase value="test" onChange={action('onChange')}/>
+      <CodeInputField fields={4} type="text" forceUppercase value="test" onChange={action('onChange')} />
   );
 
 // Creation of Props
