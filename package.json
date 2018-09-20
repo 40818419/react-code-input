@@ -30,7 +30,7 @@
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "coverageThreshold": {
       "global": {
-        "branches": 80,
+        "branches": 79,
         "functions": 100,
         "lines": 95,
         "statements": 95
