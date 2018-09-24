@@ -1,3 +1,27 @@
+### 3.7.0 (2018-09-24)
+
+##### Chores
+
+* **vulns:**  and fix them ([#49](https://github.com/40818419/react-code-input/pull/49)) ([0add2276](https://github.com/40818419/react-code-input/commit/0add2276fb63f2f789fa944535238aa0837ff308))
+* **audit-vulnerabilities:**  and fix them ([#48](https://github.com/40818419/react-code-input/pull/48)) ([454e084b](https://github.com/40818419/react-code-input/commit/454e084b116d57bc35f74fc862e4bd144aaf5f7c))
+
+##### Documentation Changes
+
+* **forceUppercase:**  added onChange event ([7364794a](https://github.com/40818419/react-code-input/commit/7364794ac040d77f850b17a7ccbcbb4d2beaa316))
+* **forceUpdate:**
+  *  add story ([09c32c86](https://github.com/40818419/react-code-input/commit/09c32c86be1f100f7a195a0344cdaa32f3e3a3c9))
+  *  add story ([bf726741](https://github.com/40818419/react-code-input/commit/bf726741a27f8d17182fba451ec277a84b7fd8ce))
+* **build:**  added new storybook build ([99dc64fb](https://github.com/40818419/react-code-input/commit/99dc64fb9390a25541b8b1c21f601a7644312b37))
+
+##### Bug Fixes
+
+* **onchange:**  trigger onChange on ampty value ([#54](https://github.com/40818419/react-code-input/pull/54)) ([524717bf](https://github.com/40818419/react-code-input/commit/524717bfe04ea1e7ba1295d3431b809647981058))
+* **docs:**  fix build ([64bfd5c7](https://github.com/40818419/react-code-input/commit/64bfd5c7264d33329a34b8634216b017164e46f1))
+
+##### Other Changes
+
+* **storybook:**  storybook added ([#50](https://github.com/40818419/react-code-input/pull/50)) ([5fdb6e81](https://github.com/40818419/react-code-input/commit/5fdb6e813f22cbbca2b96ea1d5c9bacaaa73a74d))
+
 ### 3.6.0 (2018-09-06)
 
 ### 3.5.0 (2018-07-02)
