@@ -59,6 +59,7 @@ describe('CodeInputField', () => {
     element.simulate('keydown', { keyCode: 8 });
     element.simulate('keydown', { keyCode: 13 });
     element.simulate('keydown', { keyCode: 65 }); // "a"
+    element.simulate('keydown', { keyCode: 69 }); // "e"
     expect(wrapper.state().value).toEqual('23');
   });
 
