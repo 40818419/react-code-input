@@ -88,7 +88,7 @@ const props = {
 | inputStyleInvalid | object | Setting the styles of each input field if `isValid` prop is `false`. |
 | isValid | bool | Returns true if an input element contains valid data. |
 | disabled | bool | When present, it specifies that the element should be disabled. |
-| autoFocus | bool | Setup autofocus on the first input, `true` by default. |
+| autoFocus | bool | Setup autofocus on the first input, `false` by default. |
 | filterKeyCodes | array | Filter characters on key down. |
 | filterChars | array | Filter characters. | default: ['-', '.'] |
 | pattern | string | The pattern prop specifies a regular expression that the <input> element's value is checked against. |
