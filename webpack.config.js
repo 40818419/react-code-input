@@ -7,6 +7,7 @@ module.exports = [
         mode:      'production',
         output:    {
             path:          path.resolve(__dirname, 'dist'),
+            globalObject: 'typeof self !== \'undefined\' ? self : this',
             filename:      'ReactCodeInput.js',
             libraryTarget: 'umd',
             library:       'ReactCodeInput',
