@@ -1,3 +1,9 @@
+#### 3.8.1 (2018-11-02)
+
+##### Documentation Changes
+
+* **next-js:**  added usage instructions with next.js ([e8b3daad](https://github.com/40818419/react-code-input/commit/e8b3daad4d7002f75bb5554f7e19fcbe135a1d24))
+
 ### 3.8.0 (2018-09-27)
 
 ### 3.7.0 (2018-09-24)
