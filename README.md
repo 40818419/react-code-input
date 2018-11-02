@@ -71,6 +71,16 @@ const props = {
 <ReactCodeInput type='number' fields={6} {...props}/>
 ...
 ```
+### Usage with next.js
+```js
+import dynamic from 'next/dynamic';
+
+const ReactCodeInput = dynamic(import('react-code-input'));
+...
+<ReactCodeInput type='number' fields={6} {...props}/>
+...
+```
+
 ## Props:
 
 | Property | Type | Description |
@@ -96,6 +106,8 @@ const props = {
 
 ## Compatible with
 [`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)
+
+[`next.js`](https://github.com/zeit/next.js) from [zeit](https://github.com/zeit)
 
 ## License
 MIT
