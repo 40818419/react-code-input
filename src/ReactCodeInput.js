@@ -43,6 +43,7 @@ class ReactCodeInput extends Component {
         boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
         margin: '4px',
         paddingLeft: '8px',
+        paddingRight: 0,
         width: '36px',
         height: '42px',
         fontSize: '32px',
