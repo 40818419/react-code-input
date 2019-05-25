@@ -287,6 +287,7 @@ class ReactCodeInput extends Component {
               data-valid={isValid}
               pattern={pattern}
               inputMode={inputMode}
+              placeholder={this.props.placeholder}
             />
           );
         })}
@@ -333,7 +334,8 @@ ReactCodeInput.propTypes = {
   ]),
   onKeyDown: PropTypes.func,
   onKeyPress: PropTypes.func,
-  onKeyUp: PropTypes.func
+  onKeyUp: PropTypes.func,
+  placeholder: PropTypes.string
 };
 
 export default ReactCodeInput;

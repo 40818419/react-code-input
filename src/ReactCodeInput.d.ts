@@ -73,6 +73,9 @@ export interface ReactCodeInputProps {
 
     onKeyPress?: (event: React.KeyboardEvent) => void
 
+    // Placeholder to be shown in individual input box
+    placeholder?: string
+
 }
 
 declare class ReactCodeInput extends Component<ReactCodeInputProps, any> {
