@@ -331,8 +331,8 @@ ReactCodeInput.propTypes = {
     'full-width-latin', 'kana', 'kana-name', 'katakana',
     'numeric', 'tel', 'email', 'url',
   ]),
-  onKeyDown: PropsTypes.func,
-  onKeyPress: PropsTypes.func,
+  onKeyDown: PropTypes.func,
+  onKeyPress: PropTypes.func,
   onKeyUp: PropTypes.func
 };
 
