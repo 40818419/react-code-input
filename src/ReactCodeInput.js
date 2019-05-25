@@ -261,7 +261,7 @@ class ReactCodeInput extends Component {
     }
 
     return (
-      <div className={classNames(className, 'react-code-input')} style={styles.container}>
+      <div className={classNames(className, 'react-code-input')} style={styles.container} onKeyDown={this.props.onKeyDown} onKeyPress={this.props.onKeyPress} onKeyUp={this.props.onKeyUp} >
         {input.map((value, i) => {
           return (
             <input
@@ -331,6 +331,9 @@ ReactCodeInput.propTypes = {
     'full-width-latin', 'kana', 'kana-name', 'katakana',
     'numeric', 'tel', 'email', 'url',
   ]),
+  onKeyDown: PropsTypes.func,
+  onKeyPress: PropsTypes.func,
+  onKeyUp: PropTypes.func
 };
 
 export default ReactCodeInput;

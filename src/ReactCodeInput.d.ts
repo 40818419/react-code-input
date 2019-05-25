@@ -67,6 +67,12 @@ export interface ReactCodeInputProps {
     // The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display.
     inputMode: InputModeTypes
 
+    onKeyDown?: (event: React.KeyboardEvent) => void
+
+    onKeyUp?: (event: React.KeyboardEvent) => void
+
+    onKeyPress?: (event: React.KeyboardEvent) => void
+
 }
 
 declare class ReactCodeInput extends Component<ReactCodeInputProps, any> {
