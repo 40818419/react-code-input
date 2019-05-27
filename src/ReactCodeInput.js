@@ -75,7 +75,7 @@ class ReactCodeInput extends Component {
     this.handleTouch(e.target.value);
   }
 
-  clear = () => this.setState({ input: new Array(this.props.fields || 4).fill('') });
+  clear() { this.setState({ input: new Array(this.props.fields || 4).fill('') }); }
 
   handleTouch(value) {
     const { touch, untouch, name } = this.props;
