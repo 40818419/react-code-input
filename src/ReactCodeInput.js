@@ -65,10 +65,10 @@ class ReactCodeInput extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
-                    isValid:  nextProps.isValid,
-                    value:    nextProps.value,
-                    disabled: nextProps.disabled,
-                  });
+      isValid: nextProps.isValid,
+      value: nextProps.value,
+      disabled: nextProps.disabled,
+    });
   }
 
   handleBlur(e) {
