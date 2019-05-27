@@ -80,6 +80,7 @@ export interface ReactCodeInputProps {
 
 declare class ReactCodeInput extends Component<ReactCodeInputProps, any> {
     constructor(props: ReactCodeInputProps);
+    clear: () => {}
 }
 
 export default ReactCodeInput
