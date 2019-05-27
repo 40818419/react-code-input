@@ -263,6 +263,12 @@ class ReactCodeInput extends Component {
     return (
       <div className={classNames(className, 'react-code-input')} style={styles.container}>
         {input.map((value, i) => {
+          const optionalProps = {}
+
+          if (autoFocus && i === 0) {
+            optionalProps.autofocus = 'autofocus'
+          }
+
           return (
             <input
               ref={(ref) => {
@@ -270,7 +276,6 @@ class ReactCodeInput extends Component {
               }}
               id={`${this.uuid}-${i}`}
               data-id={i}
-              autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
               value={value}
               key={`input_${i}`}
               type={type}
@@ -287,6 +292,7 @@ class ReactCodeInput extends Component {
               data-valid={isValid}
               pattern={pattern}
               inputMode={inputMode}
+              {...optionalProps}
             />
           );
         })}
@@ -296,7 +302,7 @@ class ReactCodeInput extends Component {
 }
 
 ReactCodeInput.defaultProps = {
-  autoFocus: true,
+  autoFocus: false,
   isValid: true,
   disabled: false,
   forceUppercase: false,

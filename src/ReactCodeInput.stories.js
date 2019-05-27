@@ -73,7 +73,7 @@ stories
   .add(
     'Force Uppercase', () =>
       <CodeInputField fields={4} type="text" forceUppercase value="test" onChange={action('onChange')} />
-  );
+  )
 
 // Creation of Props
 propVariantStories.addDecorator((story, context) => withInfo('Details')(story)(context));
@@ -115,4 +115,8 @@ propVariantStories
   )
   .add('disabled', () =>
     <ReactCodeInput disabled={boolean('disabled', true)} />
+  )
+  .add(
+    'autofocus', () =>
+      <ReactCodeInput autoFocus={boolean('autoFocus', true)}/>
   );
