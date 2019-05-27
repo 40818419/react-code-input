@@ -67,6 +67,7 @@ export interface ReactCodeInputProps {
     // The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display.
     inputMode: InputModeTypes
 
+
     onKeyDown?: (event: React.KeyboardEvent) => void
 
     onKeyUp?: (event: React.KeyboardEvent) => void
@@ -75,7 +76,6 @@ export interface ReactCodeInputProps {
 
     // Placeholder to be shown in individual input box
     placeholder?: string
-
 }
 
 declare class ReactCodeInput extends Component<ReactCodeInputProps, any> {
