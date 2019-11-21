@@ -88,7 +88,7 @@ class ReactCodeInput extends Component {
   }
 
   handleChange(e) {
-    const { filterChars } = this.props;
+    const { filterChars, filterCharsIsBlacklist } = this.props;
 
     let value = String(e.target.value);
 
@@ -101,7 +101,8 @@ class ReactCodeInput extends Component {
     }
 
     /** Filter Chars */
-    value = value.split('').filter(currChar => !filterChars.includes(currChar)).join('');
+    value = value.split('').filter(currChar =>
+      filterCharsIsBlacklist ? !filterChars.includes(currChar) : filterChars.includes(currChar)).join('');
 
     let fullValue = value;
 
@@ -301,6 +302,7 @@ ReactCodeInput.defaultProps = {
   type: 'text',
   filterKeyCodes: [189, 190],
   filterChars: ['-', '.'],
+  filterCharsIsBlacklist: true,
 };
 
 ReactCodeInput.propTypes = {
@@ -321,6 +323,7 @@ ReactCodeInput.propTypes = {
   forceUppercase: PropTypes.bool,
   filterKeyCodes: PropTypes.array,
   filterChars: PropTypes.array,
+  filterCharsIsBlacklist: PropTypes.bool,
   pattern: PropTypes.string,
   inputMode: PropTypes.oneOf([
     'verbatim', 'latin', 'latin-name', 'latin-prose',
