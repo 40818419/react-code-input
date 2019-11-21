@@ -193,4 +193,31 @@ describe('CodeInputField', () => {
     element.simulate('blur');
     expect(element.instance()).toEqual(document.activeElement);
   });
+
+  test('should block characters that are in filter; default', () => {
+    const wrapper = mount(<CodeInputField fields={6} type="text" filterChars={['1', '2', '3', '4', '5', '6']}/>);
+    const element = wrapper.find('input').at(0);
+    const target = element.instance();
+    target.value = 'ab12cd3e4f56';
+    element.simulate('change', { target });
+    expect(wrapper.state().value).toEqual("abcdef");
+  });
+
+  test('should block characters that are in filter; flag set to false', () => {
+    const wrapper = mount(<CodeInputField fields={6} type="text" filterChars={['1', '2', '3', '4', '5', '6']} filterCharsIsWhitelist={false} />);
+    const element = wrapper.find('input').at(0);
+    const target = element.instance();
+    target.value = 'ab12cd3e4f56';
+    element.simulate('change', { target });
+    expect(wrapper.state().value).toEqual("abcdef");
+  });
+
+  test('should only allow characters that are in filter; flag set to true', () => {
+    const wrapper = mount(<CodeInputField fields={6} type="text" filterChars={['1', '2', '3', '4', '5', '6']} filterCharsIsWhitelist />);
+    const element = wrapper.find('input').at(0);
+    const target = element.instance();
+    target.value = 'ab12cd3e4f56';
+    element.simulate('change', { target });
+    expect(wrapper.state().value).toEqual("123456");
+  });
 });
