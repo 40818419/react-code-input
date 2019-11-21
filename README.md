@@ -83,27 +83,27 @@ const ReactCodeInput = dynamic(import('react-code-input'));
 
 ## Props:
 
-| Property | Type | Description |
-|:---|:---|:---|
-| type | string | Only types like: `text`, `number`, `password` and `tel` are accepted.|
-| fields | number | Allowed amount of characters to enter. |
-| value | string | Setting the value of code input field. |
-| name | string | Setting the name of component. |
-| onChange | func | Function, which is called whenever there is a change of value in the input box. |
-| touch | func | Marks the given fields as "touched" to show errors. |
-| untouch | func | Clears the "touched" flag for the given fields. |
-| className | string | Add classname to the root element. |
-| style | object | Setting the styles of container element. |
-| inputStyle | object | Setting the styles of each input field. |
-| inputStyleInvalid | object | Setting the styles of each input field if `isValid` prop is `false`. |
-| isValid | bool | Returns true if an input element contains valid data. |
-| disabled | bool | When present, it specifies that the element should be disabled. |
-| autoFocus | bool | Setup autofocus on the first input, `true` by default. |
-| filterKeyCodes | array | Filter characters on key down. |
-| filterChars | array | Filter characters. | default: ['-', '.'] |
-| filterCharsIsBlacklist | bool | `filterChars` acts as blacklist if `true`, whitelist if `false`; `true` by default. |
-| pattern | string | The pattern prop specifies a regular expression that the <input> element's value is checked against. |
-| inputMode | string | The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display. |
+| Property               | Type   | Description                                                                                          |
+| :--------------------- | :----- | :--------------------------------------------------------------------------------------------------- |
+| type                   | string | Only types like: `text`, `number`, `password` and `tel` are accepted.                                |
+| fields                 | number | Allowed amount of characters to enter.                                                               |
+| value                  | string | Setting the value of code input field.                                                               |
+| name                   | string | Setting the name of component.                                                                       |
+| onChange               | func   | Function, which is called whenever there is a change of value in the input box.                      |
+| touch                  | func   | Marks the given fields as "touched" to show errors.                                                  |
+| untouch                | func   | Clears the "touched" flag for the given fields.                                                      |
+| className              | string | Add classname to the root element.                                                                   |
+| style                  | object | Setting the styles of container element.                                                             |
+| inputStyle             | object | Setting the styles of each input field.                                                              |
+| inputStyleInvalid      | object | Setting the styles of each input field if `isValid` prop is `false`.                                 |
+| isValid                | bool   | Returns true if an input element contains valid data.                                                |
+| disabled               | bool   | When present, it specifies that the element should be disabled.                                      |
+| autoFocus              | bool   | Setup autofocus on the first input, `true` by default.                                               |
+| filterKeyCodes         | array  | Filter characters on key down.                                                                       |
+| filterChars            | array  | Filter characters; default is ['-', '.']                                                             |
+| filterCharsIsWhitelist | bool   | `filterChars` acts as blacklist if `false`, whitelist if `true`; `false` by default.                 |
+| pattern                | string | The pattern prop specifies a regular expression that the <input> element's value is checked against. |
+| inputMode              | string | The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display.    |
 
 ## Compatible with
 [`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)
