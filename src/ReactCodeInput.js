@@ -214,6 +214,7 @@ class ReactCodeInput extends Component {
           e.preventDefault();
           break;
         }
+        break;
 
       default:
         break;
