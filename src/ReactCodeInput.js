@@ -225,13 +225,9 @@ class ReactCodeInput extends Component {
     const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus, pattern, inputMode } = this.props,
       { disabled, input, isValid, defaultInputStyle } = this.state,
       styles = {
-        container: style,
+        container: { display: 'inline-block', ...style },
         input: isValid ? inputStyle : inputStyleInvalid,
       };
-
-    Object.assign(styles.container, {
-      display: 'inline-block',
-    });
 
     if (!className && Object.keys(inputStyle).length === 0) {
       Object.assign(inputStyle, {
