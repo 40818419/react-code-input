@@ -61,7 +61,7 @@ export interface ReactCodeInputProps {
     // Filter characters.
     filterChars?: Array<string>
 
-    // Filter above acts as blacklist if true, whitelist if false, true by default.
+    // Filter above acts as blacklist if true, whitelist if false; true by default.
     filterCharsIsBlacklist?: boolean;
 
     // The pattern prop specifies a regular expression that the element's value is checked against.
