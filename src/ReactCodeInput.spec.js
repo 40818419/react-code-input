@@ -51,16 +51,29 @@ describe('CodeInputField', () => {
     expect(wrapper.find('input')).toHaveLength(4);
   });
 
-  test('simulates onChange events', () => {
+  test('simulates onKeydown events', () => {
     const onChange = jest.fn();
     const wrapper = mount(<CodeInputField onChange={onChange} fields={3} value="123" type="number"/>);
     const element = wrapper.find('input').at(0);
     element.simulate('change');
-    element.simulate('keydown', { keyCode: 8 });
+    element.simulate('keydown', { keyCode: 8 });  // "backspace"
     element.simulate('keydown', { keyCode: 13 });
     element.simulate('keydown', { keyCode: 65 }); // "a"
     element.simulate('keydown', { keyCode: 69 }); // "e"
     expect(wrapper.state().value).toEqual('23');
+  });
+
+  test('simulates onKeydown events; start at 2nd input', () => {
+    const onChange = jest.fn();
+    const wrapper = mount(<CodeInputField onChange={onChange} fields={3} value="123" type="number"/>);
+    const element = wrapper.find('input').at(1);
+    element.simulate('change');
+    element.simulate('keydown', { keyCode: 8 });  // "backspace"
+    element.simulate('keydown', { keyCode: 13 });
+    element.simulate('keydown', { keyCode: 65 }); // "a"
+    element.simulate('keydown', { keyCode: 69 }); // "e"
+    expect(wrapper.state().value).toEqual('13');
+    expect(wrapper.find('input').at(0).instance()).toEqual(document.activeElement);
   });
 
   test('simulates onChange from paste type=text', () => {
@@ -179,5 +192,32 @@ describe('CodeInputField', () => {
     element.simulate('focus');
     element.simulate('blur');
     expect(element.instance()).toEqual(document.activeElement);
+  });
+
+  test('should block characters that are in filter; default', () => {
+    const wrapper = mount(<CodeInputField fields={6} type="text" filterChars={['1', '2', '3', '4', '5', '6']}/>);
+    const element = wrapper.find('input').at(0);
+    const target = element.instance();
+    target.value = 'ab12cd3e4f56';
+    element.simulate('change', { target });
+    expect(wrapper.state().value).toEqual("abcdef");
+  });
+
+  test('should block characters that are in filter; flag set to false', () => {
+    const wrapper = mount(<CodeInputField fields={6} type="text" filterChars={['1', '2', '3', '4', '5', '6']} filterCharsIsWhitelist={false} />);
+    const element = wrapper.find('input').at(0);
+    const target = element.instance();
+    target.value = 'ab12cd3e4f56';
+    element.simulate('change', { target });
+    expect(wrapper.state().value).toEqual("abcdef");
+  });
+
+  test('should only allow characters that are in filter; flag set to true', () => {
+    const wrapper = mount(<CodeInputField fields={6} type="text" filterChars={['1', '2', '3', '4', '5', '6']} filterCharsIsWhitelist />);
+    const element = wrapper.find('input').at(0);
+    const target = element.instance();
+    target.value = 'ab12cd3e4f56';
+    element.simulate('change', { target });
+    expect(wrapper.state().value).toEqual("123456");
   });
 });
