@@ -228,7 +228,7 @@ class ReactCodeInput extends Component {
   }
 
   render() {
-    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus, pattern, inputMode } = this.props,
+    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, inputStyleDisabled = {}, type, autoFocus, pattern, inputMode } = this.props,
       { disabled, input, isValid, defaultInputStyle } = this.state,
       styles = {
         container: { display: 'inline-block', ...style },
@@ -254,12 +254,22 @@ class ReactCodeInput extends Component {
     }
 
     if (disabled) {
-      Object.assign(styles.input, {
-        cursor: 'not-allowed',
-        color: 'lightgrey',
-        borderColor: 'lightgrey',
-        backgroundColor: '#efeff1',
-      });
+      if (Object.keys(inputStyleDisabled).length === 0) {
+        Object.assign(styles.input, {
+          cursor: 'not-allowed',
+          color: 'lightgrey',
+          borderColor: 'lightgrey',
+          backgroundColor: '#efeff1'
+        });
+      } else {
+        Object.assign(styles.input, {
+          cursor: 'not-allowed',
+          color: 'lightgrey',
+          borderColor: 'lightgrey',
+          backgroundColor: '#efeff1',
+          ...inputStyleDisabled
+        });
+      }
     }
 
     return (
@@ -324,6 +334,7 @@ ReactCodeInput.propTypes = {
   style: PropTypes.object,
   inputStyle: PropTypes.object,
   inputStyleInvalid: PropTypes.object,
+  inputStyleDisabled: PropTypes.object,
   autoFocus: PropTypes.bool,
   forceUppercase: PropTypes.bool,
   filterKeyCodes: PropTypes.array,
