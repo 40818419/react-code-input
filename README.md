@@ -65,6 +65,19 @@ const props = {
     backgroundColor: 'black',
     color: 'red',
     border: '1px solid red'
+  },
+  inputStyleDisabled: {
+    fontFamily: 'monospace',
+    margin:  '4px',
+    MozAppearance: 'textfield',
+    width: '15px',
+    borderRadius: '3px',
+    fontSize: '14px',
+    height: '26px',
+    paddingLeft: '7px',
+    backgroundColor: 'lightgray',
+    color: 'gray',
+    border: '1px solid gray'
   }
 }
 ...
@@ -96,6 +109,7 @@ const ReactCodeInput = dynamic(import('react-code-input'));
 | style                  | object | Setting the styles of container element.                                                             |
 | inputStyle             | object | Setting the styles of each input field.                                                              |
 | inputStyleInvalid      | object | Setting the styles of each input field if `isValid` prop is `false`.                                 |
+| inputStyleDisabled     | object | Setting the styles of each input field if `disabled` prop is `true`.
 | isValid                | bool   | Returns true if an input element contains valid data.                                                |
 | disabled               | bool   | When present, it specifies that the element should be disabled.                                      |
 | autoFocus              | bool   | Setup autofocus on the first input, `true` by default.                                               |
