@@ -76,15 +76,12 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
-    "babel-plugin-istanbul": "^4.1.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.26.0",
-    "codacy-coverage": "^3.0.0",
     "codecov": "^3.0.2",
-    "create-react-class": "^15.6.3",
     "cross-env": "^5.1.6",
     "css-loader": "^0.28.11",
     "enhanced-resolve": "^4.0.0",
@@ -96,23 +93,14 @@
     "jest": "^23.1.0",
     "jsdom": "^11.10.0",
     "jsdom-global": "^3.0.2",
-    "json-loader": "^0.5.7",
-    "memory-fs": "^0.4.1",
-    "node-sass": "^4.13.1",
     "postcss-loader": "^2.1.5",
-    "punycode": "^2.1.0",
     "react": "^16.3.2",
     "react-addons-test-utils": "^15.6.2",
-    "react-bluekit": "^0.4.4",
     "react-dom": "^16.3.2",
     "react-hot-loader": "^4.2.0",
-    "react-markdown": "^3.3.2",
     "sass": "^1.13.4",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
-    "tapable": "^1.0.0",
-    "uri-js": "^4.2.2",
-    "watchpack": "^1.6.0",
     "webpack": "^4.41.6",
     "webpack-cli": "^2.1.3",
     "webpack-dev-server": "^3.1.8"
@@ -120,5 +108,9 @@
   "peerDependencies": {
     "react": "^15.5.4 || ^16.2.0",
     "react-dom": "^15.5.4 || ^16.2.0"
+  },
+  "resolutions": {
+    "marked": ">=0.6.2",
+    "js-yaml": ">=3.13.1"
   }
 }
