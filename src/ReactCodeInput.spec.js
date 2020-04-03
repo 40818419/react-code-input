@@ -160,6 +160,11 @@ describe('CodeInputField', () => {
     expect(wrapper.state().disabled).toBe(true);
   });
 
+  test('should be autoComplete off by default', () => {
+    const wrapper = mount(<CodeInputField fields={4} value="123" type="number" />);
+    expect(wrapper.props().autoComplete).toBe("off");
+  });
+
   test('should render with inputStyleInvalid', () => {
     const inputStyleInvalid = {
       color: "black",
