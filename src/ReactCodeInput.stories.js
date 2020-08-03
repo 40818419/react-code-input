@@ -113,6 +113,12 @@ propVariantStories
   .add('untouch', () =>
     <ReactCodeInput untouch={action('untouch')} />
   )
-  .add('disabled', () =>
-    <ReactCodeInput disabled={boolean('disabled', true)} />
-  );
+  .add('disabled', () => (
+    <ReactCodeInput
+      disabled={boolean('disabled', true)}
+      inputStyleDisabled={object('inputStyleDisabled', {
+        borderColor: 'darkgrey',
+        color: 'red'
+      })}
+    />
+  ));
