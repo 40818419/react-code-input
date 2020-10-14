@@ -104,7 +104,7 @@ const ReactCodeInput = dynamic(import('react-code-input'));
 | filterCharsIsWhitelist | bool   | `filterChars` acts as blacklist if `false`, whitelist if `true`; `false` by default.                 |
 | pattern                | string | The pattern prop specifies a regular expression that the <input> element's value is checked against. |
 | inputMode              | string | The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display.    |
-| autoComplete           | string | The autoComplete prop specifies whether or not an input field should have autocomplete enabled.    |
+| autoComplete           | string | The autoComplete prop specifies whether or not an input field should have autocomplete enabled or what type of data the autocomplete should fill it with.    |
 
 ## Compatible with
 [`redux-form`](https://github.com/erikras/redux-form) from [erikras](https://github.com/erikras)
