@@ -244,7 +244,17 @@ class ReactCodeInput extends Component {
   }
 
   render() {
-    const { className, style = {}, inputStyle = {}, inputStyleInvalid = {}, type, autoFocus, pattern, inputMode } = this.props,
+    const {
+        className,
+        style = {},
+        inputStyle = {},
+        inputStyleInvalid = {},
+        type,
+        autoFocus,
+        autoComplete,
+        pattern,
+        inputMode
+      } = this.props,
       { disabled, input, isValid, defaultInputStyle } = this.state,
       styles = {
         container: { display: 'inline-block', ...style },
@@ -296,7 +306,7 @@ class ReactCodeInput extends Component {
               max={9}
               maxLength={input.length === i + 1 ? 1 : input.length}
               style={styles.input}
-              autoComplete="off"
+              autoComplete={autoComplete}
               onFocus={(e) => e.target.select(e)}
               onBlur={(e) => this.handleBlur(e)}
               onChange={(e) => this.handleChange(e)}
@@ -314,6 +324,7 @@ class ReactCodeInput extends Component {
 }
 
 ReactCodeInput.defaultProps = {
+  autoComplete: 'off',
   autoFocus: true,
   isValid: true,
   disabled: false,
@@ -340,6 +351,7 @@ ReactCodeInput.propTypes = {
   style: PropTypes.object,
   inputStyle: PropTypes.object,
   inputStyleInvalid: PropTypes.object,
+  autoComplete: PropTypes.string,
   autoFocus: PropTypes.bool,
   forceUppercase: PropTypes.bool,
   filterKeyCodes: PropTypes.array,

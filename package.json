@@ -3,6 +3,7 @@
   "version": "3.9.0",
   "description": "React component for entering and validating numbers, text or password.",
   "main": "dist/ReactCodeInput.js",
+  "types": "./src/ReactCodeInput.d.ts",
   "scripts": {
     "start": "npm run storybook",
     "build": "rm -r docs && mkdir docs && build-storybook -o docs && webpack && cd styles && sass style.scss style.css",
