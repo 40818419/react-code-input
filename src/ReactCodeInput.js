@@ -75,6 +75,8 @@ class ReactCodeInput extends Component {
     this.handleTouch(e.target.value);
   }
 
+  clear() { this.setState({ input: new Array(this.props.fields || 4).fill('') }); }
+
   handleTouch(value) {
     const { touch, untouch, name } = this.props;
 
@@ -273,7 +275,7 @@ class ReactCodeInput extends Component {
     }
 
     return (
-      <div className={classNames(className, 'react-code-input')} style={styles.container}>
+      <div className={classNames(className, 'react-code-input')} style={styles.container} onKeyDown={this.props.onKeyDown} onKeyPress={this.props.onKeyPress} onKeyUp={this.props.onKeyUp} >
         {input.map((value, i) => {
           return (
             <input
@@ -299,6 +301,7 @@ class ReactCodeInput extends Component {
               data-valid={isValid}
               pattern={pattern}
               inputMode={inputMode}
+              placeholder={this.props.placeholder}
             />
           );
         })}
@@ -347,6 +350,10 @@ ReactCodeInput.propTypes = {
     'full-width-latin', 'kana', 'kana-name', 'katakana',
     'numeric', 'tel', 'email', 'url',
   ]),
+  onKeyDown: PropTypes.func,
+  onKeyPress: PropTypes.func,
+  onKeyUp: PropTypes.func,
+  placeholder: PropTypes.string
 };
 
 export default ReactCodeInput;
