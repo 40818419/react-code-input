@@ -17,6 +17,9 @@ export interface ReactCodeInputProps {
     // Allowed amount of characters to enter.
     fields?: number
 
+    // Placeholder of the inputs.
+    placeholder?: string
+
     // Value of the input
     value?: string
 
