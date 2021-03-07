@@ -1,9 +1,8 @@
-import React from 'react';
-
-import { storiesOf }                                        from '@storybook/react';
-import { action }                                           from '@storybook/addon-actions';
-import { withKnobs, boolean, object, text, select, number } from '@storybook/addon-knobs';
-import { withInfo }                                         from '@storybook/addon-info';
+import React                                                       from 'react';
+import { storiesOf }                                               from '@storybook/react';
+import { action }                                                  from '@storybook/addon-actions';
+import { array, withKnobs, boolean, object, text, select, number } from '@storybook/addon-knobs';
+import { withInfo }                                                from '@storybook/addon-info';
 
 import ReactCodeInput from './ReactCodeInput.js';
 import CodeInputField from "./ReactCodeInput";
@@ -85,6 +84,9 @@ propVariantStories
   )
   .add('fields', () =>
     <ReactCodeInput fields={number('fields', 6)} />
+  )
+  .add('placeholder', () =>
+    <ReactCodeInput placeholder={text('placeholder', '0')} />
   )
   .add('inputStyle', () =>
     <ReactCodeInput inputStyle={object('inputStyle', inputStyle)} />

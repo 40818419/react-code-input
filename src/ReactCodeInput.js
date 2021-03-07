@@ -237,7 +237,8 @@ class ReactCodeInput extends Component {
         autoFocus,
         autoComplete,
         pattern,
-        inputMode
+        inputMode,
+        placeholder
       } = this.props,
       { disabled, input, isValid, defaultInputStyle } = this.state,
       styles = {
@@ -299,6 +300,7 @@ class ReactCodeInput extends Component {
               data-valid={isValid}
               pattern={pattern}
               inputMode={inputMode}
+              placeholder={placeholder}
             />
           );
         })}
@@ -324,6 +326,7 @@ ReactCodeInput.defaultProps = {
 ReactCodeInput.propTypes = {
   type: PropTypes.oneOf(['text', 'number', 'password', 'tel']),
   fields: PropTypes.number,
+  placeholder: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
   name: PropTypes.string,

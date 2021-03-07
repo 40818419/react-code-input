@@ -2,7 +2,8 @@ import React from 'react';
 import CodeInputField from './ReactCodeInput.js';
 
 const numbers = '123456',
-  chars = '123FE3';
+  chars = '123FE3',
+  placeholder = '0';
 
 describe('CodeInputField', () => {
   test('renders without error', () => {
@@ -13,9 +14,10 @@ describe('CodeInputField', () => {
 
   test('renders field without any values', () => {
     const wrapper = shallow(<CodeInputField/>);
-
+    
     expect(wrapper.find('input')).toHaveLength(4);
     expect(wrapper.state().fields).toEqual(4);
+    expect(CodeInputField.defaultProps.placeholder).toBeUndefined();
     expect(wrapper.state().value).toEqual('');
     expect(wrapper.state().type).toEqual('text');
     expect(wrapper.state().input).toBeInstanceOf(Array);
@@ -40,11 +42,21 @@ describe('CodeInputField', () => {
     }
     expect(val.join('')).toEqual(chars);
   });
+  
+  test(`renders component with placeholder: ${placeholder}`, () => {
+    const wrapper = render(<CodeInputField value={numbers} fields={6} type="number" placeholder={placeholder}/>),
+      val = [];
+    for (let i = 0; i < numbers.length; i += 1) {
+      val.push(wrapper.find('input')[i].attribs.value);
+    }
+    expect(val.join('')).toEqual(numbers);
+  });
 
   test('mount component with props: "fields={6}"', () => {
     const wrapper = mount(<CodeInputField fields={6}/>);
     expect(wrapper.props().fields).toEqual(6);
   });
+
 
   test('should have 4 input felds', () => {
     const wrapper = shallow(<CodeInputField/>);
