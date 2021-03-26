@@ -15,6 +15,7 @@ const UP_ARROW_KEY = 38;
 const RIGHT_ARROW_KEY = 39;
 const DOWN_ARROW_KEY = 40;
 const E_KEY = 69;
+const ANDROID_229 = 229;
 
 class ReactCodeInput extends Component {
   constructor(props) {
@@ -186,6 +187,21 @@ class ReactCodeInput extends Component {
         }
         if (this.props.onChange) {
           this.props.onChange(value);
+        }
+        break;
+//       TEMP FIX FOR ANDROID BACKSPACE ISSUE, the below code will remove the entered input if it encounter keycode 229 and the current input lenght is equal to 1
+//       WORKS different from IOS and Desktop, here once we delete an item the focus will be retained to the same input unlike IOS and desktop where focus shifts to previous value if the currrent value is removed and previous targer exsists
+      case ANDROID_229:
+        if (this.textInput[target].value.length === 1) {
+          e.preventDefault();
+          this.textInput[target].value = '';
+          input = this.state.input.slice();
+          input[target] = '';
+          value = input.join('');
+          this.setState({ value, input });
+          if (this.props.onChange) {
+            this.props.onChange(value);
+          }
         }
         break;
 
