@@ -74,7 +74,7 @@ export interface ReactCodeInputProps {
     inputMode: InputModeTypes
 
     // The autoComplete prop specifies whether or not an input field should have autocomplete enabled.
-    autoComplete: 'on' | 'off'
+    autoComplete?: 'on' | 'off'
 }
 
 declare class ReactCodeInput extends Component<ReactCodeInputProps, any> {
