@@ -153,6 +153,7 @@ class ReactCodeInput extends Component {
   }
 
   handleKeyDown(e) {
+    const isNumeric = /^\d*$/.test(e.key);
     const target = Number(e.target.dataset.id),
       nextTarget = this.textInput[target + 1],
       prevTarget = this.textInput[target - 1];
@@ -222,6 +223,11 @@ class ReactCodeInput extends Component {
 
       default:
         break;
+    }
+
+    // Prevents typing letters if the type is number for Safari & Firefox
+    if (e.target.type === 'number' && !isNumeric) {
+      e.preventDefault();
     }
 
     this.handleTouch(value);
