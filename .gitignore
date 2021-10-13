@@ -9,3 +9,19 @@ coverage
 .idea
 .DS_Store
 dist
+
+# Source: https://github.com/storybookjs/storybook/issues/8972#issuecomment-559164304
+
+# Ignore unused language chunks and maps
+react-syntax-highlighter_languages_highlight_*.*.bundle.js
+react-syntax-highlighter_languages_highlight_*.*.bundle.js.map
+vendors~react-syntax-highlighter_languages_highlight_*.*.bundle.js
+vendors~react-syntax-highlighter_languages_highlight_*.*.bundle.js.map
+
+# Unignore the language highlighter chunks storybook uses for MDX stories
+!react-syntax-highlighter_languages_highlight_jsx.*.bundle.js.map
+!react-syntax-highlighter_languages_highlight_bash.*.bundle.js.map
+!react-syntax-highlighter_languages_highlight_css.*.bundle.js.map
+!react-syntax-highlighter_languages_highlight_html.*.bundle.js.map
+!react-syntax-highlighter_languages_highlight_tsx.*.bundle.js.map
+!react-syntax-highlighter_languages_highlight_typescript.*.bundle.js.map
