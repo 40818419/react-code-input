@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
-    <title>Storybook</title>
-    <link rel="shortcut icon" href="favicon.ico?v=1" />
-
-    
-  
-    
-      <base target="_parent">
-
-<style>
-  :not(.sb-show-main) > .sb-main,
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Storybook</title><meta name="viewport" content="width=device-width,initial-scale=1"><base target="_parent"><style>:not(.sb-show-main) > .sb-main,
   :not(.sb-show-nopreview) > .sb-nopreview,
   :not(.sb-show-errordisplay) > .sb-errordisplay {
-      display: none;
+    display: none;
   }
 
   .sb-wrapper {
@@ -26,15 +11,17 @@
     left: 0;
     right: 0;
     padding: 20px;
-    font-family: -apple-system, ".SFNSText-Regular", "San Francisco", Roboto, "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+    font-family: "Nunito Sans", -apple-system, ".SFNSText-Regular", "San Francisco", BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    overflow: auto;
   }
 
   .sb-heading {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.2px;
     margin: 10px 0;
+    padding-right: 25px;
   }
 
   .sb-nopreview {
@@ -55,89 +42,45 @@
   }
 
   .sb-errordisplay {
-    background-color: rgb(187, 49, 49);
-    color: #FFF;
+    border: 20px solid rgb(187, 49, 49);
+    background: #222;
+    color: #fff;
+    z-index: 999999;
   }
 
   .sb-errordisplay_code {
-    font-size: 14px;
-    width: 100vw;
-    overflow: auto;
+    padding: 10px;
+    background: #000;
+    color: #eee;
+    font-family: "Operator Mono", "Fira Code Retina", "Fira Code", "FiraCode-Retina", "Andale Mono", "Lucida Console", Consolas, Monaco, monospace;
   }
-</style>
 
-<script>
-  if (window.parent !== window) {
-    window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-    window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__VUE_DEVTOOLS_GLOBAL_HOOK__;
-  }
-</script>
-<style>
-    .react-code-input input[type="number"]::-webkit-outer-spin-button,
+  .sb-errordisplay pre {
+    white-space: pre-wrap;
+  }</style><script>/* globals window */
+  /* eslint-disable no-underscore-dangle */
+  try {
+    if (window.top !== window) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.top.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+      window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = window.top.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+      window.top.__VUE_DEVTOOLS_CONTEXT__ = window.document;
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn('unable to connect to top frame for connecting dev tools');
+  }</script><style>.react-code-input input[type="number"]::-webkit-outer-spin-button,
     .react-code-input input[type="number"]::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0; }
     .react-code-input input[type="number"] {
-        -moz-appearance: textfield; }
-</style>
-<!-- Hotjar Tracking Code for https://40818419.github.io/react-code-input/ -->
-<script>
-  (function(h,o,t,j,a,r){
+        -moz-appearance: textfield; }</style><script>(function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:381601,hjsv:5};
     a=o.getElementsByTagName('head')[0];
     r=o.createElement('script');r.async=1;
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
-  })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-    
-  
-</head>
-<body>
-    
-    
-
-    
-      <div class="sb-nopreview sb-wrapper">
-  <div class="sb-nopreview_main">
-    <h1 class="sb-nopreview_heading sb-heading">No Preview</h1>
-    <p>Sorry, but you either have no stories or none are selected somehow.</p>
-    <ul>
-      <li>Please check the storybook config.</li>
-      <li>Try reloading the page.</li>
-    </ul>
-  </div>
-</div>
-
-<div class="sb-errordisplay sb-wrapper">
-  <div id="error-message" class="sb-heading"></div>
-  <pre class="sb-errordisplay_code">
-    <code id="error-stack"></code>
-  </pre>
-</div>
-
-    
-  
-    <div id="root"></div>
-
-    
-      
-    
-  
-    
-      
-        <script src="static/runtime~iframe.7161ffe0bb3d969a0dda.bundle.js" defer></script>
-      
-    
-      
-        <script src="static/vendors~iframe.917d8e8f3e518ec26969.bundle.js" defer></script>
-      
-    
-      
-        <script src="static/iframe.6bda8d9805b3c00c5208.bundle.js" defer></script>
-      
-    
-  
-</body>
-</html>
+  })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');</script><style>#root[hidden],
+      #docs-root[hidden] {
+        display: none !important;
+      }</style></head><body><div class="sb-nopreview sb-wrapper"><div class="sb-nopreview_main"><h1 class="sb-nopreview_heading sb-heading">No Preview</h1><p>Sorry, but you either have no stories or none are selected somehow.</p><ul><li>Please check the Storybook config.</li><li>Try reloading the page.</li></ul><p>If the problem persists, check the browser console, or the terminal you've run Storybook from.</p></div></div><div class="sb-errordisplay sb-wrapper"><pre id="error-message" class="sb-heading"></pre><pre class="sb-errordisplay_code"><code id="error-stack"></code></pre></div><div id="root"></div><div id="docs-root"></div><script src="runtime~main.b74c3d32a4afaa0206f0.bundle.js"></script><script src="vendors~main.b74c3d32a4afaa0206f0.bundle.js"></script><script src="main.b74c3d32a4afaa0206f0.bundle.js"></script></body></html>
