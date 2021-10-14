@@ -6,7 +6,7 @@
   "types": "./src/ReactCodeInput.d.ts",
   "scripts": {
     "start": "npm run storybook",
-    "build": "rm -r docs && mkdir docs && build-storybook -o docs && webpack && cd styles && sass style.scss style.css",
+    "build": "rm -r docs && mkdir docs && build-storybook -o docs && webpack",
     "test": "cross-env NODE_ENV=test jest --silent",
     "test:coverage": "cross-env NODE_ENV=test jest --silent --coverage",
     "codecov": "codecov -f ./coverage/*.json",

@@ -11,10 +11,7 @@ import { uuidv4 } from './utils';
 
 const BACKSPACE_KEY = 8;
 const LEFT_ARROW_KEY = 37;
-const UP_ARROW_KEY = 38;
 const RIGHT_ARROW_KEY = 39;
-const DOWN_ARROW_KEY = 40;
-const E_KEY = 69;
 
 class ReactCodeInput extends Component {
   constructor(props) {
@@ -201,21 +198,6 @@ class ReactCodeInput extends Component {
         }
         break;
 
-      case UP_ARROW_KEY:
-        e.preventDefault();
-        break;
-
-      case DOWN_ARROW_KEY:
-        e.preventDefault();
-        break;
-
-      case E_KEY: // This case needs to be handled because of https://stackoverflow.com/questions/31706611/why-does-the-html-input-with-type-number-allow-the-letter-e-to-be-entered-in
-        if (e.target.type === 'number') {
-          e.preventDefault();
-          break;
-        }
-        break;
-
       default:
         break;
     }
@@ -282,7 +264,7 @@ class ReactCodeInput extends Component {
               autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
               value={value}
               key={`input_${i}`}
-              type={type}
+              type={type === 'number' ? 'text' : type}
               min={0}
               max={9}
               maxLength={input.length === i + 1 ? 1 : input.length}
