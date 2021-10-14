@@ -51,11 +51,9 @@ class ReactCodeInput extends Component {
       },
     };
 
-    for (let i = 0; i < Number(this.state.fields); i += 1) {
-      if (i < 32) {
-        const value = this.state.value[i] || '';
-        this.state.input.push(value);
-      }
+    for (let i = 0; i < Number(this.state.fields) && i < 32; i += 1) {
+      const value = this.state.value[i] || '';
+      this.state.input.push(value);
     }
 
     this.textInput = [];
