@@ -20,7 +20,7 @@ class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
 
-    const { fields, type, isValid, disabled, filterKeyCodes, forceUppercase } = props;
+    const { fields, isValid, disabled, filterKeyCodes, forceUppercase } = props;
     let { value } = props;
 
     if (forceUppercase) {
@@ -29,7 +29,6 @@ class ReactCodeInput extends Component {
 
     this.state = {
       value,
-      type,
       input: [],
       isValid,
       disabled,
@@ -93,7 +92,7 @@ class ReactCodeInput extends Component {
       value = value.toUpperCase();
     }
 
-    if (this.state.type === 'number') {
+    if (this.props.type === 'number') {
       value = value.replace(/[^\d]/g, '');
     }
 
