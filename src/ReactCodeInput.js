@@ -13,6 +13,21 @@ const BACKSPACE_KEY = 8;
 const LEFT_ARROW_KEY = 37;
 const RIGHT_ARROW_KEY = 39;
 
+const defaultInputStyle = {
+  fontFamily: 'monospace',
+  MozAppearance: 'textfield',
+  borderRadius: '6px',
+  border: '1px solid',
+  boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
+  margin: '4px',
+  paddingLeft: '8px',
+  paddingRight: 0,
+  width: '36px',
+  height: '42px',
+  fontSize: '32px',
+  boxSizing: 'border-box',
+};
+
 class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
@@ -30,20 +45,6 @@ class ReactCodeInput extends Component {
       isValid,
       disabled,
       filterKeyCodes,
-      defaultInputStyle: {
-        fontFamily: 'monospace',
-        MozAppearance: 'textfield',
-        borderRadius: '6px',
-        border: '1px solid',
-        boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
-        margin: '4px',
-        paddingLeft: '8px',
-        paddingRight: 0,
-        width: '36px',
-        height: '42px',
-        fontSize: '32px',
-        boxSizing: 'border-box',
-      },
     };
 
     for (let i = 0; i < Number(fields) && i < 32; i += 1) {
@@ -218,7 +219,7 @@ class ReactCodeInput extends Component {
         inputMode,
         placeholder
       } = this.props,
-      { disabled, input, isValid, defaultInputStyle } = this.state,
+      { disabled, input, isValid } = this.state,
       styles = {
         container: { display: 'inline-block', ...style },
         input: isValid ? inputStyle : inputStyleInvalid,
