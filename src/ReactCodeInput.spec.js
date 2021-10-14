@@ -16,7 +16,6 @@ describe('CodeInputField', () => {
     const wrapper = shallow(<CodeInputField/>);
     
     expect(wrapper.find('input')).toHaveLength(4);
-    expect(wrapper.state().fields).toEqual(4);
     expect(CodeInputField.defaultProps.placeholder).toBeUndefined();
     expect(wrapper.state().value).toEqual('');
     expect(wrapper.find('input').first().is('[type="text"]')).toEqual(true);
