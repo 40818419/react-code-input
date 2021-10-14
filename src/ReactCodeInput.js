@@ -108,16 +108,17 @@ class ReactCodeInput extends Component {
 
     if (value !== '') {
       const input = this.state.input.slice();
+      const targetIndex = Number(e.target.dataset.id);
 
       if (value.length > 1) {
         value.split('').forEach((char, i) => {
-          if (Number(e.target.dataset.id) + i < this.props.fields) {
-            input[Number(e.target.dataset.id) + i] = char;
+          if (targetIndex + i < this.props.fields) {
+            input[targetIndex + i] = char;
           }
           return false;
         });
       } else {
-        input[Number(e.target.dataset.id)] = value;
+        input[targetIndex] = value;
       }
 
       input.forEach((s, i) => {
@@ -126,9 +127,9 @@ class ReactCodeInput extends Component {
         }
       });
 
-      const newTarget = this.textInput[e.target.dataset.id < input.length
-        ? Number(e.target.dataset.id) + 1
-        : e.target.dataset.id];
+      const newTarget = this.textInput[targetIndex < input.length
+        ? targetIndex + 1
+        : targetIndex];
 
       if (newTarget) {
         newTarget.focus();
