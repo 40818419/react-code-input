@@ -110,9 +110,9 @@ class ReactCodeInput extends Component {
       const input = this.state.input.slice();
 
       if (value.length > 1) {
-        value.split('').map((chart, i) => {
+        value.split('').forEach((char, i) => {
           if (Number(e.target.dataset.id) + i < this.props.fields) {
-            input[Number(e.target.dataset.id) + i] = chart;
+            input[Number(e.target.dataset.id) + i] = char;
           }
           return false;
         });
@@ -120,11 +120,10 @@ class ReactCodeInput extends Component {
         input[Number(e.target.dataset.id)] = value;
       }
 
-      input.map((s, i) => {
+      input.forEach((s, i) => {
         if (this.textInput[i]) {
           this.textInput[i].value = s;
         }
-        return false;
       });
 
       const newTarget = this.textInput[e.target.dataset.id < input.length
