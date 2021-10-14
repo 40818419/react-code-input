@@ -32,7 +32,7 @@ class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
 
-    const { fields, isValid, disabled, filterKeyCodes, forceUppercase } = props;
+    const { fields, forceUppercase } = props;
     let { value } = props;
 
     if (forceUppercase) {
@@ -42,9 +42,6 @@ class ReactCodeInput extends Component {
     this.state = {
       value,
       input: [],
-      isValid,
-      disabled,
-      filterKeyCodes,
     };
 
     for (let i = 0; i < Number(fields) && i < 32; i += 1) {
@@ -59,9 +56,7 @@ class ReactCodeInput extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
-      isValid: nextProps.isValid,
       value: nextProps.value,
-      disabled: nextProps.disabled,
     });
   }
 
@@ -153,8 +148,8 @@ class ReactCodeInput extends Component {
     let input,
       value;
 
-    if (this.state.filterKeyCodes.length > 0) {
-      this.state.filterKeyCodes.some((item) => {
+    if (this.props.filterKeyCodes.length > 0) {
+      this.props.filterKeyCodes.some((item) => {
         if (item === e.keyCode) {
           e.preventDefault();
           return true;
@@ -209,9 +204,11 @@ class ReactCodeInput extends Component {
   render() {
     const {
         className,
+        disabled,
         style = {},
         inputStyle = {},
         inputStyleInvalid = {},
+        isValid,
         type,
         autoFocus,
         autoComplete,
@@ -219,7 +216,7 @@ class ReactCodeInput extends Component {
         inputMode,
         placeholder
       } = this.props,
-      { disabled, input, isValid } = this.state,
+      { input } = this.state,
       styles = {
         container: { display: 'inline-block', ...style },
         input: isValid ? inputStyle : inputStyleInvalid,
