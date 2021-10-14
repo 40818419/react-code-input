@@ -127,9 +127,8 @@ class ReactCodeInput extends Component {
         }
       });
 
-      const newTarget = this.textInput[targetIndex < input.length
-        ? targetIndex + 1
-        : targetIndex];
+      const newTargetIndex = Math.min(value.length + targetIndex, this.props.fields - 1);
+      const newTarget = this.textInput[newTargetIndex];
 
       if (newTarget) {
         newTarget.focus();
