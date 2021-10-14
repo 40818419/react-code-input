@@ -168,7 +168,7 @@ describe('CodeInputField', () => {
 
   test('should be disabled', () => {
     const wrapper = mount(<CodeInputField fields={4} value="123" type="number" disabled/>);
-    expect(wrapper.state().disabled).toBe(true);
+    expect(wrapper.find('input').every('[disabled]')).toBe(true);
   });
 
   test('should be autoComplete off by default', () => {
