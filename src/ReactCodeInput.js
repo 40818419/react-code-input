@@ -161,11 +161,12 @@ class ReactCodeInput extends Component {
       value;
 
     if (this.state.filterKeyCodes.length > 0) {
-      this.state.filterKeyCodes.map((item) => {
+      this.state.filterKeyCodes.some((item) => {
         if (item === e.keyCode) {
           e.preventDefault();
           return true;
         }
+        return false;
       });
     }
 
