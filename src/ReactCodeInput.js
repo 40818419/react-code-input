@@ -29,7 +29,6 @@ class ReactCodeInput extends Component {
 
     this.state = {
       value,
-      fields,
       type,
       input: [],
       isValid,
@@ -51,7 +50,7 @@ class ReactCodeInput extends Component {
       },
     };
 
-    for (let i = 0; i < Number(this.state.fields) && i < 32; i += 1) {
+    for (let i = 0; i < Number(fields) && i < 32; i += 1) {
       const value = this.state.value[i] || '';
       this.state.input.push(value);
     }
