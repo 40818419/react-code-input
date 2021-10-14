@@ -267,7 +267,6 @@ class ReactCodeInput extends Component {
               type={type === 'number' ? 'text' : type}
               min={0}
               max={9}
-              maxLength={input.length === i + 1 ? 1 : input.length}
               style={styles.input}
               autoComplete={autoComplete}
               onFocus={(e) => e.target.select(e)}
