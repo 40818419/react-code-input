@@ -48,7 +48,8 @@ class ReactCodeInput extends Component {
     }
 
     this.setState({
-      value: nextProps.value,
+      input: getInputArrayFromProps(nextProps),
+      value: getValueFromProps(nextProps),
     });
   }
 
