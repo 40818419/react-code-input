@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { uuidv4 } from './utils';
+import { getInputArrayFromProps, getValueFromProps, uuidv4 } from './utils';
 
 const BACKSPACE_KEY = 8;
 const LEFT_ARROW_KEY = 37;
@@ -32,22 +32,10 @@ class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
 
-    const { fields, forceUppercase } = props;
-    let value = props.value || '';
-
-    if (forceUppercase) {
-      value = value.toUpperCase();
-    }
-
     this.state = {
-      value,
-      input: [],
+      input: getInputArrayFromProps(props),
+      value: getValueFromProps(props),
     };
-
-    for (let i = 0; i < Number(fields) && i < 32; i += 1) {
-      const value = this.state.value[i] || '';
-      this.state.input.push(value);
-    }
 
     this.textInput = [];
 
