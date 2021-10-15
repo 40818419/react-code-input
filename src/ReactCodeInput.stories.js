@@ -5,7 +5,6 @@ import { withKnobs, boolean, object, text, select, number } from '@storybook/add
 import { withInfo }                                         from '@storybook/addon-info';
 
 import ReactCodeInput from './ReactCodeInput.js';
-import CodeInputField from "./ReactCodeInput";
 
 const stories = storiesOf('ReactCodeInput', module);
 const propVariantStories = storiesOf('ReactCodeInput/Props', module);
@@ -83,7 +82,7 @@ stories
   )
   .add(
     'Force Uppercase', () =>
-      <CodeInputField fields={4} type="text" forceUppercase value="test" onChange={action('onChange')} />
+      <ReactCodeInput fields={4} type="text" forceUppercase value="test" onChange={action('onChange')} />
   )
   .add('With Reset', WithReset);
 
