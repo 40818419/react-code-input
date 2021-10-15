@@ -43,7 +43,7 @@ class ReactCodeInput extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.value == null) {
+    if (nextProps.value == null || nextProps.value === this.props.value) {
       return;
     }
 
