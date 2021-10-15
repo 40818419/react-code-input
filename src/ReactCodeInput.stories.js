@@ -57,6 +57,18 @@ const darkStyle = {
 stories.addDecorator((story, context) => withInfo('Details')(story)(context));
 stories.addDecorator(withKnobs);
 
+// Component for With Reset story
+function WithReset() {
+    const [value, setValue] = React.useState(null);
+
+    return (
+        <React.Fragment>
+          <ReactCodeInput onChange={() => setValue(null)} value={value} />
+            <button style={{ ...inputStyle, width: 'auto', backgroundColor: 'lightgray' }} onClick={() => setValue('')}>Reset</button>
+        </React.Fragment>
+    )
+}
+
 // Stories for Input Field
 stories
   .add(
@@ -72,7 +84,8 @@ stories
   .add(
     'Force Uppercase', () =>
       <CodeInputField fields={4} type="text" forceUppercase value="test" onChange={action('onChange')} />
-  );
+  )
+  .add('With Reset', WithReset);
 
 // Creation of Props
 propVariantStories.addDecorator((story, context) => withInfo('Details')(story)(context));
