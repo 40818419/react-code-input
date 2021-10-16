@@ -7,56 +7,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { uuidv4 } from './utils';
+import { getInputArrayFromProps, getValueFromProps, uuidv4 } from './utils';
 
 const BACKSPACE_KEY = 8;
 const LEFT_ARROW_KEY = 37;
-const UP_ARROW_KEY = 38;
 const RIGHT_ARROW_KEY = 39;
-const DOWN_ARROW_KEY = 40;
-const E_KEY = 69;
+
+const defaultInputStyle = {
+  fontFamily: 'monospace',
+  MozAppearance: 'textfield',
+  borderRadius: '6px',
+  border: '1px solid',
+  boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
+  margin: '4px',
+  paddingLeft: '8px',
+  paddingRight: 0,
+  width: '36px',
+  height: '42px',
+  fontSize: '32px',
+  boxSizing: 'border-box',
+};
 
 class ReactCodeInput extends Component {
   constructor(props) {
     super(props);
 
-    const { fields, type, isValid, disabled, filterKeyCodes, forceUppercase } = props;
-    let { value } = props;
-
-    if (forceUppercase) {
-      value = value.toUpperCase();
-    }
-
     this.state = {
-      value,
-      fields,
-      type,
-      input: [],
-      isValid,
-      disabled,
-      filterKeyCodes,
-      defaultInputStyle: {
-        fontFamily: 'monospace',
-        MozAppearance: 'textfield',
-        borderRadius: '6px',
-        border: '1px solid',
-        boxShadow: '0px 0px 10px 0px rgba(0,0,0,.10)',
-        margin: '4px',
-        paddingLeft: '8px',
-        paddingRight: 0,
-        width: '36px',
-        height: '42px',
-        fontSize: '32px',
-        boxSizing: 'border-box',
-      },
+      input: getInputArrayFromProps(props),
+      value: getValueFromProps(props),
     };
-
-    for (let i = 0; i < Number(this.state.fields); i += 1) {
-      if (i < 32) {
-        const value = this.state.value[i] || '';
-        this.state.input.push(value);
-      }
-    }
 
     this.textInput = [];
 
@@ -64,10 +43,13 @@ class ReactCodeInput extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.value == null || nextProps.value === this.props.value) {
+      return;
+    }
+
     this.setState({
-      isValid: nextProps.isValid,
-      value: nextProps.value,
-      disabled: nextProps.disabled,
+      input: getInputArrayFromProps(nextProps),
+      value: getValueFromProps(nextProps),
     });
   }
 
@@ -96,7 +78,7 @@ class ReactCodeInput extends Component {
       value = value.toUpperCase();
     }
 
-    if (this.state.type === 'number') {
+    if (this.props.type === 'number') {
       value = value.replace(/[^\d]/g, '');
     }
 
@@ -112,28 +94,27 @@ class ReactCodeInput extends Component {
 
     if (value !== '') {
       const input = this.state.input.slice();
+      const targetIndex = Number(e.target.dataset.id);
 
       if (value.length > 1) {
-        value.split('').map((chart, i) => {
-          if (Number(e.target.dataset.id) + i < this.props.fields) {
-            input[Number(e.target.dataset.id) + i] = chart;
+        value.split('').forEach((char, i) => {
+          if (targetIndex + i < this.props.fields) {
+            input[targetIndex + i] = char;
           }
           return false;
         });
       } else {
-        input[Number(e.target.dataset.id)] = value;
+        input[targetIndex] = value;
       }
 
-      input.map((s, i) => {
+      input.forEach((s, i) => {
         if (this.textInput[i]) {
           this.textInput[i].value = s;
         }
-        return false;
       });
 
-      const newTarget = this.textInput[e.target.dataset.id < input.length
-        ? Number(e.target.dataset.id) + 1
-        : e.target.dataset.id];
+      const newTargetIndex = Math.min(value.length + targetIndex, this.props.fields - 1);
+      const newTarget = this.textInput[newTargetIndex];
 
       if (newTarget) {
         newTarget.focus();
@@ -160,12 +141,13 @@ class ReactCodeInput extends Component {
     let input,
       value;
 
-    if (this.state.filterKeyCodes.length > 0) {
-      this.state.filterKeyCodes.map((item) => {
+    if (this.props.filterKeyCodes.length > 0) {
+      this.props.filterKeyCodes.some((item) => {
         if (item === e.keyCode) {
           e.preventDefault();
           return true;
         }
+        return false;
       });
     }
 
@@ -205,21 +187,6 @@ class ReactCodeInput extends Component {
         }
         break;
 
-      case UP_ARROW_KEY:
-        e.preventDefault();
-        break;
-
-      case DOWN_ARROW_KEY:
-        e.preventDefault();
-        break;
-
-      case E_KEY: // This case needs to be handled because of https://stackoverflow.com/questions/31706611/why-does-the-html-input-with-type-number-allow-the-letter-e-to-be-entered-in
-        if (e.target.type === 'number') {
-          e.preventDefault();
-          break;
-        }
-        break;
-
       default:
         break;
     }
@@ -230,9 +197,11 @@ class ReactCodeInput extends Component {
   render() {
     const {
         className,
+        disabled,
         style = {},
         inputStyle = {},
         inputStyleInvalid = {},
+        isValid,
         type,
         autoFocus,
         autoComplete,
@@ -240,7 +209,7 @@ class ReactCodeInput extends Component {
         inputMode,
         placeholder
       } = this.props,
-      { disabled, input, isValid, defaultInputStyle } = this.state,
+      { input } = this.state,
       styles = {
         container: { display: 'inline-block', ...style },
         input: isValid ? inputStyle : inputStyleInvalid,
@@ -286,10 +255,9 @@ class ReactCodeInput extends Component {
               autoFocus={autoFocus && (i === 0) ? 'autoFocus' : ''}
               value={value}
               key={`input_${i}`}
-              type={type}
+              type={type === 'number' ? 'text' : type}
               min={0}
               max={9}
-              maxLength={input.length === i + 1 ? 1 : input.length}
               style={styles.input}
               autoComplete={autoComplete}
               onFocus={(e) => e.target.select(e)}
@@ -316,7 +284,6 @@ ReactCodeInput.defaultProps = {
   disabled: false,
   forceUppercase: false,
   fields: 4,
-  value: '',
   type: 'text',
   filterKeyCodes: [189, 190],
   filterChars: ['-', '.'],

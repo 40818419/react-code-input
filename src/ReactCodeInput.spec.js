@@ -16,10 +16,9 @@ describe('CodeInputField', () => {
     const wrapper = shallow(<CodeInputField/>);
     
     expect(wrapper.find('input')).toHaveLength(4);
-    expect(wrapper.state().fields).toEqual(4);
     expect(CodeInputField.defaultProps.placeholder).toBeUndefined();
     expect(wrapper.state().value).toEqual('');
-    expect(wrapper.state().type).toEqual('text');
+    expect(wrapper.find('input').first().is('[type="text"]')).toEqual(true);
     expect(wrapper.state().input).toBeInstanceOf(Array);
     expect(wrapper.find('div').hasClass('react-code-input')).toBeTruthy();
     expect(wrapper.type()).toEqual('div');
@@ -169,7 +168,7 @@ describe('CodeInputField', () => {
 
   test('should be disabled', () => {
     const wrapper = mount(<CodeInputField fields={4} value="123" type="number" disabled/>);
-    expect(wrapper.state().disabled).toBe(true);
+    expect(wrapper.find('input').every('[disabled]')).toBe(true);
   });
 
   test('should be autoComplete off by default', () => {

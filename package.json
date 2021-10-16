@@ -6,7 +6,7 @@
   "types": "./src/ReactCodeInput.d.ts",
   "scripts": {
     "start": "npm run storybook",
-    "build": "rm -r docs && mkdir docs && build-storybook -o docs && webpack && cd styles && sass style.scss style.css",
+    "build": "rm -r docs && mkdir docs && build-storybook -o docs && webpack",
     "test": "cross-env NODE_ENV=test jest --silent",
     "test:coverage": "cross-env NODE_ENV=test jest --silent --coverage",
     "codecov": "codecov -f ./coverage/*.json",
@@ -66,16 +66,14 @@
   },
   "homepage": "https://github.com/40818419/react-code-input#readme",
   "dependencies": {
-    "classnames": "^2.2.5",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "classnames": "^2.2.5"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "4.0.0-alpha.20",
-    "@storybook/addon-info": "^3.4.10",
-    "@storybook/addon-knobs": "^3.4.10",
-    "@storybook/addons": "4.0.0-alpha.20",
-    "@storybook/react": "^4.0.0-alpha.20",
+    "@storybook/addon-actions": "^5.3.21",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-knobs": "^5.3.21",
+    "@storybook/addons": "^5.3.21",
+    "@storybook/react": "^5.3.21",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -94,31 +92,27 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-plugin-react": "^7.8.2",
-    "extract-text-webpack-plugin": "^3.0.2",
     "generate-changelog": "^1.7.1",
     "jest": "^23.1.0",
     "jsdom": "^11.10.0",
     "jsdom-global": "^3.0.2",
     "json-loader": "^0.5.7",
     "memory-fs": "^0.4.1",
-    "node-sass": "^4.9.3",
     "postcss-loader": "^2.1.5",
     "punycode": "^2.1.0",
-    "react-addons-test-utils": "^15.6.2",
-    "react-bluekit": "^0.4.4",
     "react-hot-loader": "^4.2.0",
     "react-markdown": "^3.3.2",
-    "sass": "^1.13.4",
+    "sass": "^1.42.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "tapable": "^1.0.0",
     "uri-js": "^4.2.2",
     "watchpack": "^1.6.0",
     "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.3",
-    "webpack-dev-server": "^3.1.8"
+    "webpack-cli": "^3.3.10"
   },
   "peerDependencies": {
+    "prop-types": "^15",
     "react": "^15.5.4 ||^16.2.0 || ^17.0.0",
     "react-dom": "^15.5.4 ||^16.2.0 || ^17.0.0"
   }

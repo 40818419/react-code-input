@@ -21,7 +21,7 @@ export interface ReactCodeInputProps {
     placeholder?: string
 
     // Value of the input
-    value?: string
+    value?: string | null
 
     // Get the full value of the input on every change
     onChange?: (value: string) => void
