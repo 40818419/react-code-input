@@ -172,18 +172,24 @@ class ReactCodeInput extends Component {
     switch (e.keyCode) {
       case BACKSPACE_KEY:
         e.preventDefault();
-        this.textInput[target].value = '';
         input = this.state.input.slice();
+
+        const prevValue = this.textInput[target].value;
+        this.textInput[target].value = '';
         input[target] = '';
+
+        if (!prevValue && prevTarget) {
+          this.textInput[target - 1].value = '';
+          input[target - 1] = '';
+        }
+
+        if (prevTarget) {
+          prevTarget.focus();
+        }
+
         value = input.join('');
 
         this.setState({ value, input });
-        if (this.textInput[target].value === '') {
-          if (prevTarget) {
-            prevTarget.focus();
-            prevTarget.select();
-          }
-        }
         if (this.props.onChange) {
           this.props.onChange(value);
         }
@@ -292,7 +298,7 @@ class ReactCodeInput extends Component {
               maxLength={input.length === i + 1 ? 1 : input.length}
               style={styles.input}
               autoComplete={autoComplete}
-              onFocus={(e) => e.target.select(e)}
+              onClick={(e) => e.target.select(e)}
               onBlur={(e) => this.handleBlur(e)}
               onChange={(e) => this.handleChange(e)}
               onKeyDown={(e) => this.handleKeyDown(e)}
