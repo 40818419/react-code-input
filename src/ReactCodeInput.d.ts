@@ -73,6 +73,9 @@ export interface ReactCodeInputProps {
     // The inputMode prop tells the browser on devices with dynamic keyboards which keyboard to display.
     inputMode: InputModeTypes
 
+    // The autoComplete prop specifies whether or not an input field should have autocomplete enabled.
+    autoComplete?: string
+
 }
 
 declare class ReactCodeInput extends Component<ReactCodeInputProps, any> {
